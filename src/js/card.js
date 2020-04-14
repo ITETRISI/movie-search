@@ -28,6 +28,14 @@ class Card {
 		container.innerHTML += card;
 	}
 
+	static drawCards(index) {
+		container.innerHTML = '';
+		cards[index].forEach(element => {
+			const card = new Card(element)
+			card.init()
+		})
+	}
+
 	static soundCard(cardIndex) {
 		const sound = cards[Links.linkIndex][cardIndex].audioSrc
 		const audio = document.querySelector('.audio')
@@ -36,20 +44,12 @@ class Card {
 	}
 }
 
-const container = document.querySelector('.container')
-
-function drawCards(index) {
-	container.innerHTML = '';
-	cards[index].forEach(element => {
-		const card = new Card(element)
-		card.init()
-	})
-}
+const container = document.querySelector('.container') 
 
 container.addEventListener('click', () => {
 	if (event.target.classList.contains('rotate')) {
 		event.target.parentElement.classList.add('translate')
-	} else if (event.target.parentElement.classList.contains('card')) {
+	} else if (event.target.closest('.card')) {
 		const findIndex = [].indexOf.call(container.children, event.target.closest('.card-container'));
 		Card.soundCard(findIndex)
 	}
@@ -61,4 +61,4 @@ container.addEventListener('mouseout', () => {
 	}
 })
 
-export default drawCards
+export default Card

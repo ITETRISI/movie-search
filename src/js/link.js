@@ -1,5 +1,8 @@
-import {cards,links} from './data'
-import drawCards from './card'
+import {
+	cards,
+	links
+} from './data'
+import Card from './card'
 
 class Link {
 
@@ -10,33 +13,32 @@ class Link {
 		this.image = options.image;
 	}
 
-	init(){
+	init() {
 		const link = `<div class="link" style="background-image: url(${this.image})">
 		<span>${this.title}</span>
-		</div>`	
+		</div>`
 		container.innerHTML += link;
+	}
+
+	static drawLinks() {
+		container.innerHTML = '';
+		links.forEach(element => {
+			const link = new Link(element)
+			link.init()
+		})
 	}
 }
 
 const container = document.querySelector('.container')
 
-function drawLinks() {
-	container.innerHTML = '';
-	links.forEach(element => {
-		const link = new Link(element)
-		link.init()
-	})
-}
+Link.drawLinks()
 
-window.addEventListener('load',()=>{
-	container.addEventListener('click', ()=>{
-		if(event.target.closest('.link')){
-			const findIndex = [].indexOf.call(container.children, event.target.closest('div'));
-			drawCards(findIndex);
-			Link.linkIndex = findIndex;
-		}
-	})
-	drawLinks()
+container.addEventListener('click', () => {
+	if (event.target.closest('.link')) {
+		const findIndex = [].indexOf.call(container.children, event.target.closest('div'));
+		Card.drawCards(findIndex);
+		Link.linkIndex = findIndex;
+	}
 })
 
 export default Link
