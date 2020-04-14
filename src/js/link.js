@@ -2,7 +2,6 @@ import {
 	cards,
 	links
 } from './data'
-import Card from './card'
 
 class Link {
 
@@ -32,13 +31,5 @@ class Link {
 const container = document.querySelector('.container')
 
 Link.drawLinks()
-
-container.addEventListener('click', () => {
-	if (event.target.closest('.link')) {
-		const findIndex = [].indexOf.call(container.children, event.target.closest('div'));
-		Card.drawCards(findIndex);
-		Link.linkIndex = findIndex;
-	}
-})
 
 export default Link

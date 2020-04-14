@@ -44,21 +44,6 @@ class Card {
 	}
 }
 
-const container = document.querySelector('.container') 
-
-container.addEventListener('click', () => {
-	if (event.target.classList.contains('rotate')) {
-		event.target.parentElement.classList.add('translate')
-	} else if (event.target.closest('.card')) {
-		const findIndex = [].indexOf.call(container.children, event.target.closest('.card-container'));
-		Card.soundCard(findIndex)
-	}
-})
-
-container.addEventListener('mouseout', () => {
-	if (event.target.classList.contains('card')) {
-		event.target.classList.remove('translate')
-	}
-})
+const container = document.querySelector('.container');
 
 export default Card

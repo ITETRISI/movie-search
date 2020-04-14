@@ -5,17 +5,18 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="icon" href="data:,">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="./src/css/normalize.css">
 	<link rel="stylesheet" href="./src/css/style.css">
 	<title>Document</title>
 </head>
-
 <body>
 	<div class="wrapper">
-		<div class="header-container">
+		<header class="header">
 			<div class="navigation">
-				<input id="navigation__toggle" type="checkbox" />
+				<input id="navigation__toggle" type="checkbox"/>
 				<label class="navigation__btn" for="navigation__toggle">
 					<span></span>
 				</label>
@@ -29,7 +30,15 @@
 					<li class="navigation__list-item">Emotions</li>
 				</ul>
 			</div>
-		</div>
+			<div class="header__switch switch">
+				<label>
+				  TRAIN
+				  <input type="checkbox">
+				  <span class="lever"></span>
+				  PLAY
+				</label>
+			  </div>
+		</header>
 		<div class="container"></div>
 		<audio class='audio'></audio>
 	</div>

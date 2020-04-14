@@ -2,11 +2,13 @@
 	min-height: 100vh;
 }
 
-.header-container{
+.header{
 	display: flex;
 	align-items: center;
 	position: relative;
 	height: 50px;
+	justify-content: space-between;
+	padding: 0 50px;
 }
 
 .navigation__btn {
@@ -29,6 +31,7 @@
 	height: 3px;
 	background-color: #5e5353bb;
 	transition: 0.7s;
+	z-index: 10;
 }
 
 .navigation__btn span::before,
@@ -58,7 +61,7 @@
 	text-align: center;
 	background: #d65858;
 	transition: 0.5s;
-	z-index: 10;
+	z-index: 9;
 }
 
 .navigation__list-item {
@@ -88,6 +91,10 @@
 #navigation__toggle:checked~.navigation__list {
 	visibility: visible;
 	left: 0;
+}
+
+.lever:after {
+width: 30px !important;
 }
 
 .container {
