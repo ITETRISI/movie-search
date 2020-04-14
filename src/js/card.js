@@ -1,13 +1,17 @@
-import {cards,links} from './data'
+import {
+	cards,
+	links
+} from './data'
 
 class Card {
 	constructor(options) {
 		this.word = options.word;
 		this.translation = options.translation;
 		this.image = options.image;
+		this.audioSrc = options.audioSrc;
 	}
 
-	init(){
+	init() {
 		const card = `
 		<div class="card-container">
 		<div class="card">
@@ -19,7 +23,8 @@ class Card {
 			</div>
 			<button class="rotate"></button>
 		</div>
-		</div>`	
+		<audio class="audio" src='${this.audioSrc}'></audio>
+		</div>`
 		container.innerHTML += card;
 	}
 
@@ -35,16 +40,17 @@ function drawCards(index) {
 	})
 }
 
-container.addEventListener('click', ()=>{
-	if(event.target.classList.contains('rotate')){
+container.addEventListener('click', () => {
+	if (event.target.classList.contains('rotate')) {
 		event.target.parentElement.classList.add('translate')
+	} else if (event.target.parentElement.classList.contains('card')) {
+		event.target.parentElement.nextElementSibling.play()
 	}
 })
 
-container.addEventListener('mouseout', ()=>{
-	if(event.target.classList.contains('card')){
-		console.log(event.target)
-		event.target.classList.remove('translate')	
+container.addEventListener('mouseout', () => {
+	if (event.target.classList.contains('card')) {
+		event.target.classList.remove('translate')
 	}
 })
 
