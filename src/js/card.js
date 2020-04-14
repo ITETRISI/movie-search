@@ -2,6 +2,7 @@ import {
 	cards,
 	links
 } from './data'
+import Links from './link'
 
 class Card {
 	constructor(options) {
@@ -23,11 +24,16 @@ class Card {
 			</div>
 			<button class="rotate"></button>
 		</div>
-		<audio class="audio" src='${this.audioSrc}'></audio>
 		</div>`
 		container.innerHTML += card;
 	}
 
+	static soundCard(cardIndex) {
+		const sound = cards[Links.linkIndex][cardIndex].audioSrc
+		const audio = document.querySelector('.audio')
+		audio.src = sound;
+		audio.play();
+	}
 }
 
 const container = document.querySelector('.container')
@@ -44,7 +50,8 @@ container.addEventListener('click', () => {
 	if (event.target.classList.contains('rotate')) {
 		event.target.parentElement.classList.add('translate')
 	} else if (event.target.parentElement.classList.contains('card')) {
-		event.target.parentElement.nextElementSibling.play()
+		const findIndex = [].indexOf.call(container.children, event.target.closest('.card-container'));
+		Card.soundCard(findIndex)
 	}
 })
 

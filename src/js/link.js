@@ -3,6 +3,8 @@ import drawCards from './card'
 
 class Link {
 
+	static linkIndex;
+
 	constructor(options) {
 		this.title = options.title;
 		this.image = options.image;
@@ -29,8 +31,9 @@ function drawLinks() {
 window.addEventListener('load',()=>{
 	container.addEventListener('click', ()=>{
 		if(event.target.closest('.link')){
-			const findIndex = [].indexOf.bind(container.children, event.target.closest('div'));
-			drawCards(findIndex())
+			const findIndex = [].indexOf.call(container.children, event.target.closest('div'));
+			drawCards(findIndex);
+			Link.linkIndex = findIndex;
 		}
 	})
 	drawLinks()
