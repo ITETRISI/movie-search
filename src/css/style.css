@@ -59,7 +59,7 @@
 	padding: 200px 0;
 	list-style: none;
 	text-align: center;
-	background: #d65858;
+	background: #ff6f5e;
 	transition: 0.5s;
 	z-index: 9;
 }
@@ -93,8 +93,61 @@
 	left: 0;
 }
 
-.lever:after {
-width: 30px !important;
+.onoffswitch {
+    position: relative; width: 100px;
+}
+.onoffswitch-checkbox {
+    display: none;
+}
+.onoffswitch-label {
+	display: block;
+	overflow: hidden; 
+	cursor: pointer;
+	border: 2px solid #FFFFFF; 
+	border-radius: 30px;
+	box-shadow: 0 1px 5px 2px #d3d3d3;
+}
+.onoffswitch-inner {
+	display: block; 
+	width: 200%; 
+	margin-left: -100%;
+    transition: 0.6s;
+}
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+	display: block; 
+	float: left; 
+	width: 50%;
+	height: 39px; 
+	line-height: 39px;
+	font-size: 22px; 
+	color: #fff; 
+	font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+	box-sizing: border-box;
+	background-color: #ff6f5e;
+}
+.onoffswitch-inner:before {
+    content: "Train";
+    padding-left: 5px;
+}
+.onoffswitch-inner:after {
+    content: "Play";
+    padding-right: 5px;
+    text-align: right;
+}
+.onoffswitch-switch {
+    display: block; width: 28px; margin: 7px;
+    background: #00bcd4;
+    position: absolute; top: 0; bottom: 0;
+    right: 57px;
+	border: 2px solid #FFFFFF; 
+	border-radius: 30px;
+	transition: 0.6s ; 
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+    margin-left: 0;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+    right: 0px; 
 }
 
 .container {
@@ -103,6 +156,35 @@ width: 30px !important;
 	justify-content: center;
 	max-width: 1440px;
 	margin: auto;
+	padding-bottom: 30px;
+}
+
+.play .link {
+border-radius: 80px;
+}
+
+
+.play .front span{
+	transform: translateY(-50px);
+	opacity: 0;
+}
+
+.play .rotate{
+	transform: translateX(55px) scale(0);
+	opacity: 0;
+	
+}
+
+.play .card:hover {
+	box-shadow: 0px 0px 11px 0px #ff5722;
+}
+
+.play .link:hover {
+	box-shadow: 0px 0px 11px 0px #ff5722;
+}
+
+.play .link span {
+	background-color:#ff6f5e;
 }
 
 .card-container {
@@ -117,23 +199,29 @@ width: 30px !important;
 	flex-direction: column;
 	justify-content: flex-end;
 	width: 300px;
-	height: 250px;
-	border: 1px solid white;
-	box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
-	transition: 0.7s;
+	height: 254px;
+	border: 3px solid white;
+	box-shadow: 0 1px 5px 2px #d3d3d3;
+	transition: 0.8s;
 	border-radius: 10px;
-	background-color: #00bcd4;
+}
+
+.card:hover {
+	box-shadow: 0px 0px 11px 0px rgba(0,187,212,1);
 }
 
 .card span {
-	margin-top: 200px;
-	padding: 0 15px;
+	position: relative;
+	bottom: 11px;
+	margin-top: 210px;
 	font-family: 'Inter', sans-serif;
 	font-size: 24px;
-	line-height: 45px;
 	text-align: center;
-	width: 100%;
 	color: #fff;
+	background-color: #00bcd4;
+	padding: 5px 14px;
+	border-radius: 5px;
+	transition: 0.7s;
 }
 
 .front,
@@ -143,10 +231,12 @@ width: 30px !important;
 	width: 100%;
 	top: 0;
 	left: 0;
-	background-size: contain;
+	background-size: cover;
 	background-repeat: no-repeat;
 	backface-visibility: hidden;
 	border-radius: 10px;
+	align-items: center;
+	justify-content: center;
 }
 
 .back {
@@ -159,11 +249,12 @@ width: 30px !important;
 
 .rotate {
 	position: absolute;
-	right: 15px;
-	bottom: 15px;
+	right: 35px;
+	bottom: 19px;
 	width: 20px;
 	height: 20px;
 	backface-visibility: hidden;
+	transition: 0.5s;
 }
 
 .link {
@@ -177,7 +268,12 @@ width: 30px !important;
 	height: 250px;
 	overflow: hidden;
 	border-radius: 10px;
-	box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
+	box-shadow: 0 1px 5px 2px #d3d3d3;
+	transition: 0.5s;
+}
+
+.link:hover {
+	box-shadow: 0px 0px 11px 0px rgba(0,187,212,1);
 }
 
 .link span {
@@ -192,5 +288,27 @@ width: 30px !important;
 }
 
 .link:hover span {
-	transform: translateY(-60px)
+	transform: translateY(-60px);
+}
+
+.play .btn-game {
+	display: block;
+}
+
+.btn-game {
+	width: 100%;
+	text-align: center;
+	display:none;
+}
+
+.btn-game button {
+	width: 320px;
+	height: 50px;
+	outline: none;
+	border: 0;
+	background-image: linear-gradient(-20deg, #fc6076 0%, #ff9a44 100%);
+	border-radius: 25px;
+	color: #fff;
+	font-family: 'Inter', sans-serif;
+	font-size: 25px;
 }

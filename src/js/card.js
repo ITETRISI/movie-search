@@ -9,7 +9,6 @@ class Card {
 		this.word = options.word;
 		this.translation = options.translation;
 		this.image = options.image;
-		this.audioSrc = options.audioSrc;
 	}
 
 	init() {
@@ -34,6 +33,9 @@ class Card {
 			const card = new Card(element)
 			card.init()
 		})
+		container.innerHTML += `<div class="btn-game">
+			<button>Start</button>
+		</div>`
 	}
 
 	static soundCard(cardIndex) {
