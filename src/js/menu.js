@@ -1,6 +1,6 @@
 import Link from './link'
 import Card from './card'
-import {menu,score} from './data'
+import {menu,score, container} from './data'
 
 export default class NavigationBar {
 	static activeElement(position) {
@@ -27,5 +27,9 @@ menu.addEventListener('click', (event) => {
 document.addEventListener('click', (event) => {
 	if (!event.target.closest('.navigation')) {
 		document.querySelector('#navigation__toggle').checked = false;
+	}
+	
+	if(!event.target.classList.contains('rotate')){
+		[...container.children].forEach(element => element.classList.remove('translate'))
 	}
 })

@@ -19,7 +19,7 @@ function isElementLink(event) {
 
 function isElementCard(event) {
 	if (event.target.classList.contains('rotate')) {
-		event.target.parentElement.classList.add('translate');
+		event.target.closest('.card-container').classList.add('translate');
 	} else if (event.target.closest('.card')) {
 		const index = container.findIndex(event.target.closest('.card-container'))
 		Card.soundCard(index);

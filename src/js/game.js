@@ -24,6 +24,8 @@ document.querySelector('#navigation__switch').addEventListener('change', (event)
 function start() {
 	const player = new Game();
 	player.repeatSound()
+	Game.startBtn.classList.add('active');
+	Game.startBtn.querySelector('button').innerHTML= 'Restart'
 	container.addEventListener('click', clickOnCard)
 }
 
@@ -38,18 +40,24 @@ class Game {
 	static cardsArray;
 	static currentCard;
 	static finalScore;
+	static startBtn;
 
 	static createRandomCardsArray() {
 		this.cardsArray = cards[Link.linkIndex].map(a => a).sort(() => 0.5 - Math.random())
 	}
 
 	static restartGame() {
-		this.finalScore = [];
-		this.currentCard = 0;
+		this.startBtn = document.querySelector('.btn-game');
+		if(this.startBtn){
+			this.startBtn.classList.remove('active')
+			this.startBtn.querySelector('button').innerHTML = 'Start'
+		}
 		[...container.children].forEach(element => element.classList.remove('inactive'));
 		container.removeEventListener('click', clickOnCard)
 		container.lastChild.addEventListener('click', start)
 		score.innerHTML = '';
+		this.finalScore = [];
+		this.currentCard = 0;
 		Game.createRandomCardsArray()
 	}
 
