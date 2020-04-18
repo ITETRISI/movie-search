@@ -2,7 +2,7 @@ import {
 	cards
 } from './data'
 import Links from './link'
-import {Game,start} from './game'
+import {Game,start,clickOnCard} from './game'
 
 class Card {
 	constructor(options) {
@@ -37,9 +37,8 @@ class Card {
 		container.innerHTML += `<div class="btn-game">
 			<button>Start</button>
 		</div>`
+		container.removeEventListener('click', clickOnCard)
 		container.lastChild.addEventListener('click', start)
-		Game.finalScore = [];
-		Game.currentCard = 0;
 		Game.createRandomCardsArray()
 	}
 

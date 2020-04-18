@@ -2,36 +2,18 @@ import '@babel/polyfill';
 import Link from './link';
 import Card from './card';
 import './game';
+import NavigationBar from './menu';
 
 Object.prototype.findIndex = function (target) {
 	return [].indexOf.call(this.children, target)
 }
-
-const menu = document.querySelector('.navigation__list');
-menu.addEventListener('click', (event) => {
-	if (event.target.classList.contains('navigation__list-item')) {
-		const index = menu.findIndex(event.target) - 1
-		if (index < 0) {
-			Link.drawLinks();
-		} else {
-			Link.linkIndex = index;
-			Card.drawCards(index);
-		}
-		document.querySelector('#navigation__toggle').checked = false;
-	}
-});
-
-document.addEventListener('click', (event) => {
-	if (!event.target.closest('.navigation')) {
-		document.querySelector('#navigation__toggle').checked = false;
-	}
-})
 
 const container = document.querySelector('.container');
 
 function isElementLink(event) {
 	if (event.target.closest('.link')) {
 		const index = container.findIndex(event.target.closest('div'));
+		NavigationBar.activeElement(index+1)
 		Link.linkIndex = index;
 		Card.drawCards(index);
 	}

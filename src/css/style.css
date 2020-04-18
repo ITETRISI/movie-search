@@ -88,6 +88,10 @@
 	cursor: pointer;
 }
 
+.navigation__list .active {
+	color: #ffde7d;
+}
+
 #navigation__toggle {
 	display: none;
 }

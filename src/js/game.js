@@ -11,10 +11,9 @@ let score = document.querySelector('.score')
 document.querySelector('#myonoffswitch').addEventListener('change', (event) => {
 	if (event.target.checked) {
 		container.classList.remove('play');
-		container.addEventListener('click', isElementCard)
-		container.removeEventListener('click', clickOnCard)
-		Game.finalScore = [];
-		Game.currentCard = 0;
+		container.addEventListener('click', isElementCard);
+		container.removeEventListener('click', clickOnCard);
+		[...container.children].forEach(element => element.classList.remove('inactive'));
 		if(score){
 		score.innerHTML = '';
 		}
@@ -31,7 +30,7 @@ export function start() {
 	container.addEventListener('click', clickOnCard)
 }
 
-function clickOnCard(event) {
+export function clickOnCard(event) {
 	if (event.target.closest('.card') && !event.target.classList.contains('inactive')) {
 		const card = new Game();
 		card.selectedCard(event.target)
@@ -40,10 +39,12 @@ function clickOnCard(event) {
 
 export class Game {
 	static cardsArray;
-	static currentCard = 0;
-	static finalScore = [];
+	static currentCard ;
+	static finalScore ;
 
 	static createRandomCardsArray() {
+		this.finalScore = [];
+		this.currentCard = 0;
 		this.cardsArray = cards[Link.linkIndex].map(a => a).sort(() => 0.5 - Math.random())
 	}
 
@@ -56,7 +57,7 @@ export class Game {
 		const index = container.findIndex(target.closest('.card-container')) - 1
 		if (Game.currentCard < Game.cardsArray.length - 1) {
 			if (cards[Link.linkIndex][index] === Game.cardsArray[Game.currentCard]) {
-				event.target.classList.add('inactive')
+				event.target.closest('.card-container').classList.add('inactive')
 				Game.currentCard++;
 				this.playSound('./src/audio/correct.mp3')
 				setTimeout(() => {
