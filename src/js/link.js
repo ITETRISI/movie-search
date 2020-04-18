@@ -1,11 +1,10 @@
 import {
-	cards,
 	links
 } from './data'
 
 class Link {
 
-	static linkIndex;
+	static linkIndex = 0;
 
 	constructor(options) {
 		this.title = options.title;

@@ -1,11 +1,27 @@
+.win,.lose {
+	background-position: center;
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+
+.win{
+	background-image: url('../image/game/success.jpg');
+}
+
+.lose {
+	background-image: url('../image/game/failure.jpg');
+}
+
 .wrapper {
+	position: relative;
 	min-height: 100vh;
 }
 
 .header{
+	position: sticky;
 	display: flex;
+	top:0;
 	align-items: center;
-	position: relative;
 	height: 50px;
 	justify-content: space-between;
 	padding: 0 50px;
@@ -159,13 +175,36 @@
 	padding-bottom: 30px;
 }
 
+.score {
+	display: flex;
+	justify-content: flex-end;
+	width: 100%;
+	height:40px;
+	overflow-x: hidden;
+}
+
+.score-correct,.score-wrong {
+	flex-shrink: 0;
+	background-size: cover;
+	width: 40px;
+	height: 40px;
+}
+
+.score-wrong {
+	background-image: url('../image/game/wrong.svg');
+}
+
+.score-correct{
+	background-image: url('../image/game/correct.svg');
+}
+
 .play .link {
 border-radius: 80px;
 }
 
 
 .play .front span{
-	transform: translateY(-50px);
+	transform: translateY(-50px) scale(0);
 	opacity: 0;
 }
 
@@ -210,18 +249,25 @@ border-radius: 80px;
 	box-shadow: 0px 0px 11px 0px rgba(0,187,212,1);
 }
 
+.inactive {
+	opacity: 0.7;
+}
+
 .card span {
 	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: ;
 	bottom: 11px;
 	margin-top: 210px;
 	font-family: 'Inter', sans-serif;
 	font-size: 24px;
-	text-align: center;
 	color: #fff;
 	background-color: #00bcd4;
 	padding: 5px 14px;
 	border-radius: 5px;
 	transition: 0.7s;
+	cursor: default;
 }
 
 .front,
@@ -249,12 +295,22 @@ border-radius: 80px;
 
 .rotate {
 	position: absolute;
+	background-image: url('../image/cards/reload.svg');
+	background-color: rgba(0, 0, 0, 0);
+	border: 0;
 	right: 35px;
-	bottom: 19px;
-	width: 20px;
-	height: 20px;
+	bottom: 15px;
+	width: 35px;
+	height: 35px;
 	backface-visibility: hidden;
+	border-radius: 19px;
+	outline: none;
+	cursor: pointer;
 	transition: 0.5s;
+}
+
+.rotate:hover {
+	transform: rotate(180deg);
 }
 
 .link {

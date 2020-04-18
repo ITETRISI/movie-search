@@ -1,8 +1,8 @@
 import {
-	cards,
-	links
+	cards
 } from './data'
 import Links from './link'
+import {Game,start} from './game'
 
 class Card {
 	constructor(options) {
@@ -29,6 +29,7 @@ class Card {
 
 	static drawCards(index) {
 		container.innerHTML = '';
+		container.innerHTML += `<div class="score"></div>` 
 		cards[index].forEach(element => {
 			const card = new Card(element)
 			card.init()
@@ -36,6 +37,10 @@ class Card {
 		container.innerHTML += `<div class="btn-game">
 			<button>Start</button>
 		</div>`
+		container.lastChild.addEventListener('click', start)
+		Game.finalScore = [];
+		Game.currentCard = 0;
+		Game.createRandomCardsArray()
 	}
 
 	static soundCard(cardIndex) {
