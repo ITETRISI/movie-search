@@ -7,6 +7,7 @@ import {
 	container,
 	score
 } from './data';
+import NavigationBar from './menu';
 
 document.querySelector('#navigation__switch').addEventListener('change', (event) => {
 	if (event.target.checked) {
@@ -88,6 +89,7 @@ class Game {
 
 	gameResult() {
 		container.innerHTML = ''
+		score.innerHTML = ''
 		if (Game.finalScore.includes(false)) {
 			document.body.classList.add('lose')
 			this.playSound('./src/audio/failure.mp3')
@@ -96,6 +98,7 @@ class Game {
 			this.playSound('./src/audio/success.mp3')
 		}
 		setTimeout(() => {
+			NavigationBar.activeElement(0)
 			document.body.classList.remove('lose', 'win');
 			Game.finalScore = [];
 			Game.currentCard = 0;

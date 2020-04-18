@@ -1,6 +1,6 @@
 import Link from './link'
 import Card from './card'
-import {menu} from './data'
+import {menu,score} from './data'
 
 export default class NavigationBar {
 	static activeElement(position) {
@@ -12,6 +12,7 @@ export default class NavigationBar {
 menu.addEventListener('click', (event) => {
 	if (event.target.classList.contains('navigation__list-item')) {
 		const index = menu.findIndex(event.target) - 1
+		score.innerHTML = '';
 		if (index < 0) {
 			Link.drawLinks();
 		} else {

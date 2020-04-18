@@ -23,6 +23,14 @@ const links = [{
 		title: 'Emotions',
 		image: './src/image/links/smile.jpg',
 	},
+	{
+		title: 'Transport',
+		image: './src/image/links/transport.jpg',
+	},
+	{
+		title: 'Sport',
+		image: './src/image/links/sport.jpg',
+	},
 ]
 
 const cards = [
@@ -318,6 +326,105 @@ const cards = [
 			translation: 'смех',
 			image: './src/image/cards/laugh.jpg',
 			audioSrc: './src/audio/laugh.mp3'
+		}
+	],
+	[{
+			word: 'car',
+			translation: 'машина',
+			image: './src/image/cards/car.jpg',
+			audioSrc: './src/audio/car.mp3'
+		},
+		{
+			word: 'bicycle',
+			translation: 'велосипед',
+			image: './src/image/cards/bicycle.jpg',
+			audioSrc: './src/audio/bicycle.mp3'
+		},
+		{
+			word: 'bus',
+			translation: 'автобус',
+			image: './src/image/cards/bus.jpg',
+			audioSrc: './src/audio/bus.mp3'
+		},
+		{
+			word: 'motorbike',
+			translation: 'мотоцикл',
+			image: './src/image/cards/motorbike.jpg',
+			audioSrc: './src/audio/motorbike.mp3'
+		},
+		{
+			word: 'airplane',
+			translation: 'самолет',
+			image: './src/image/cards/airplane.jpg',
+			audioSrc: './src/audio/airplane.mp3'
+		},
+		{
+			word: 'ship',
+			translation: 'корабль',
+			image: './src/image/cards/ship.jpg',
+			audioSrc: './src/audio/ship.mp3'
+		},
+		{
+			word: 'helicopter',
+			translation: 'вертолет',
+			image: './src/image/cards/helicopter.jpg',
+			audioSrc: './src/audio/helicopter.mp3'
+		},
+		{
+			word: 'tram',
+			translation: 'трамвай',
+			image: './src/image/cards/tram.jpg',
+			audioSrc: './src/audio/tram.mp3'
+		}
+	],
+	[
+		{
+			word: 'football',
+			translation: 'футбол',
+			image: './src/image/cards/football.jpg',
+			audioSrc: './src/audio/football.mp3'
+		},
+		{
+			word: 'hockey',
+			translation: 'хоккей',
+			image: './src/image/cards/hockey.jpg',
+			audioSrc: './src/audio/hockey.mp3'
+		},
+		{
+			word: 'swimming',
+			translation: 'плавание',
+			image: './src/image/cards/swimming.jpeg',
+			audioSrc: './src/audio/swimming.mp3'
+		},
+		{
+			word: 'basketball',
+			translation: 'баскетбол',
+			image: './src/image/cards/basketball.jpg',
+			audioSrc: './src/audio/basketball.mp3'
+		},
+		{
+			word: 'tennis',
+			translation: 'тенис',
+			image: './src/image/cards/tennis.jpg',
+			audioSrc: './src/audio/tennis.mp3'
+		},
+		{
+			word: 'rugby',
+			translation: 'регби',
+			image: './src/image/cards/rugby.jpg',
+			audioSrc: './src/audio/rugby.mp3'
+		},
+		{
+			word: 'polo',
+			translation: 'поло',
+			image: './src/image/cards/polo.jpg',
+			audioSrc: './src/audio/polo.mp3'
+		},
+		{
+			word: 'boxing',
+			translation: 'бокс',
+			image: './src/image/cards/boxing.jpg',
+			audioSrc: './src/audio/boxing.mp3'
 		}
 	]
 ]
