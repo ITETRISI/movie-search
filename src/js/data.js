@@ -1,3 +1,7 @@
+const container = document.querySelector('.container');
+const menu = document.querySelector('.navigation__list');
+const score = document.querySelector('.score');
+
 const links = [{
 		title: 'Action (set A)',
 		image: "./src/image/links/dance.jpg",
@@ -20,7 +24,6 @@ const links = [{
 		image: './src/image/links/smile.jpg',
 	},
 ]
-
 
 const cards = [
 	[{
@@ -319,4 +322,10 @@ const cards = [
 	]
 ]
 
-export {cards, links};
+export {
+	cards,
+	links,
+	container,
+	menu,
+	score
+};

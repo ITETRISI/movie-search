@@ -2,7 +2,8 @@ import {
 	cards
 } from './data'
 import Links from './link'
-import {Game,start,clickOnCard} from './game'
+import Game from './game'
+import Link from './link';
 
 class Card {
 	constructor(options) {
@@ -28,8 +29,8 @@ class Card {
 	}
 
 	static drawCards(index) {
+		Link.linkIndex = index;
 		container.innerHTML = '';
-		container.innerHTML += `<div class="score"></div>` 
 		cards[index].forEach(element => {
 			const card = new Card(element)
 			card.init()
@@ -37,15 +38,12 @@ class Card {
 		container.innerHTML += `<div class="btn-game">
 			<button>Start</button>
 		</div>`
-		container.removeEventListener('click', clickOnCard)
-		container.lastChild.addEventListener('click', start)
-		Game.createRandomCardsArray()
+		Game.restartGame()
 	}
 
 	static soundCard(cardIndex) {
 		const sound = cards[Links.linkIndex][cardIndex].audioSrc
-		const audio = document.querySelector('.audio')
-		audio.src = sound;
+		const audio = new Audio(sound)
 		audio.play();
 	}
 }

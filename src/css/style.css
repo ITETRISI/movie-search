@@ -113,13 +113,13 @@
 	left: 0;
 }
 
-.onoffswitch {
+.navigation__switch {
     position: relative; width: 100px;
 }
-.onoffswitch-checkbox {
+.navigation__switch-checkbox {
     display: none;
 }
-.onoffswitch-label {
+.navigation__switch-label {
 	display: block;
 	overflow: hidden; 
 	cursor: pointer;
@@ -127,13 +127,13 @@
 	border-radius: 30px;
 	box-shadow: 0 1px 5px 2px #d3d3d3;
 }
-.onoffswitch-inner {
+.navigation__switch-inner {
 	display: block; 
 	width: 200%; 
 	margin-left: -100%;
     transition: 0.6s;
 }
-.onoffswitch-inner:before, .onoffswitch-inner:after {
+.navigation__switch-inner:before, .navigation__switch-inner:after {
 	display: block; 
 	float: left; 
 	width: 50%;
@@ -145,16 +145,16 @@
 	box-sizing: border-box;
 	background-color: #ff6f5e;
 }
-.onoffswitch-inner:before {
+.navigation__switch-inner:before {
     content: "Train";
     padding-left: 5px;
 }
-.onoffswitch-inner:after {
+.navigation__switch-inner:after {
     content: "Play";
     padding-right: 5px;
     text-align: right;
 }
-.onoffswitch-switch {
+.navigation__switch-switch {
     display: block; width: 28px; margin: 7px;
     background: #00bcd4;
     position: absolute; top: 0; bottom: 0;
@@ -163,10 +163,10 @@
 	border-radius: 30px;
 	transition: 0.6s ; 
 }
-.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+.navigation__switch-checkbox:checked + .navigation__switch-label .navigation__switch-inner {
     margin-left: 0;
 }
-.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+.navigation__switch-checkbox:checked + .navigation__switch-label .navigation__switch-switch {
     right: 0px; 
 }
 

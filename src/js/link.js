@@ -1,5 +1,6 @@
 import {
-	links
+	links,
+	container
 } from './data'
 
 class Link {
@@ -26,8 +27,6 @@ class Link {
 		})
 	}
 }
-
-const container = document.querySelector('.container')
 
 Link.drawLinks()
 

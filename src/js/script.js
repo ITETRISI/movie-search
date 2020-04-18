@@ -1,6 +1,7 @@
 import '@babel/polyfill';
 import Link from './link';
 import Card from './card';
+import {container} from './data';
 import './game';
 import NavigationBar from './menu';
 
@@ -8,13 +9,10 @@ Object.prototype.findIndex = function (target) {
 	return [].indexOf.call(this.children, target)
 }
 
-const container = document.querySelector('.container');
-
 function isElementLink(event) {
 	if (event.target.closest('.link')) {
 		const index = container.findIndex(event.target.closest('div'));
 		NavigationBar.activeElement(index+1)
-		Link.linkIndex = index;
 		Card.drawCards(index);
 	}
 }
@@ -24,7 +22,7 @@ function isElementCard(event) {
 		event.target.parentElement.classList.add('translate');
 	} else if (event.target.closest('.card')) {
 		const index = container.findIndex(event.target.closest('.card-container'))
-		Card.soundCard(index-1);
+		Card.soundCard(index);
 	}
 }
 
