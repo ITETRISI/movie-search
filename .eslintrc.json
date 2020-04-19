@@ -4,7 +4,7 @@
 		"es6": true
 	},
 	"extends": [
-		"airbnb-base"
+		"eslint-config-airbnb-base"
 	],
 	"globals": {
 		"Atomics": "readonly",
@@ -20,11 +20,16 @@
 		"no-tabs": 0,
 		"no-console": 0,
 		"no-alert": 0,
-		"no-param-reassign": 0
+		"no-param-reassign": 0,
+		"no-plusplus": 0,
+		"no-restricted-syntax": ["error", "ForInStatement", "LabeledStatement", "WithStatement"],
+		"prefer-destructuring": ["error", {"object": true, "array": false}],
+		"no-extend-native": ["error", { "exceptions": ["Object"] }]
 	},
 	"settings": {
-		"import/ignore": [
-		  "current-time"
-		]
+		"import/extensions": [
+			"error",
+			"ignorePackages"
+		 ]
 	}
 }

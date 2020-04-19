@@ -1,9 +1,9 @@
 import {
-	cards
-} from './data'
-import Links from './link'
-import Game from './game'
-import Link from './link';
+	cards,
+	container,
+} from './data';
+import Links from './link';
+import Game from './game';
 
 class Card {
 	constructor(options) {
@@ -24,30 +24,28 @@ class Card {
 			</div>
 			<button class="rotate"></button>
 		</div>
-		</div>`
+		</div>`;
 		container.innerHTML += card;
 	}
 
 	static drawCards(index) {
 		Link.linkIndex = index;
 		container.innerHTML = '';
-		cards[index].forEach(element => {
-			const card = new Card(element)
-			card.init()
-		})
+		cards[index].forEach((element) => {
+			const card = new Card(element);
+			card.init();
+		});
 		container.innerHTML += `<div class="btn-game">
 			<button>Start</button>
-		</div>`
-		Game.restartGame()
+		</div>`;
+		Game.restartGame();
 	}
 
 	static soundCard(cardIndex) {
-		const sound = cards[Links.linkIndex][cardIndex].audioSrc
-		const audio = new Audio(sound)
+		const sound = cards[Links.linkIndex][cardIndex].audioSrc;
+		const audio = new Audio(sound);
 		audio.play();
 	}
 }
 
-const container = document.querySelector('.container');
-
-export default Card
+export default Card;
