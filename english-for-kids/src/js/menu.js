@@ -1,5 +1,5 @@
-import Link from './link';
-import Card from './card';
+import {link,drawLinks} from './link';
+import {drawCards} from './card';
 import { menu, score, container } from './data';
 import Stats from './statistics';
 
@@ -15,12 +15,12 @@ menu.addEventListener('click', (event) => {
 		const index = menu.findIndex(event.target) - 1;
 		score.innerHTML = '';
 		if (index < 0) {
-			Link.drawLinks();
+			drawLinks();
 		} else if (index + 1 === menu.childElementCount - 1) {
-			new Stats().createTable();
+			Stats.createTable();
 		} else {
-			Link.linkIndex = index;
-			Card.drawCards(index);
+			link.linkIndex = index;
+			drawCards(index);
 		}
 		NavigationBar.activeElement(index + 1);
 		document.querySelector('#navigation__toggle').checked = false;

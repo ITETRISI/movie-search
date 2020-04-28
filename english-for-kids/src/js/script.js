@@ -1,5 +1,5 @@
-import Link from './link';
-import Card from './card';
+import {link} from './link';
+import {card,drawCards} from './card';
 import { container, cards } from './data';
 import NavigationBar from './menu';
 
@@ -11,7 +11,7 @@ function isElementLink(event) {
 	if (event.target.closest('.link')) {
 		const index = container.findIndex(event.target.closest('div'));
 		NavigationBar.activeElement(index + 1);
-		Card.drawCards(index);
+		drawCards(index);
 	}
 }
 
@@ -20,9 +20,9 @@ function isElementCard(event) {
 		event.target.closest('.card-container').classList.add('translate');
 	} else if (event.target.closest('.card')) {
 		const index = container.findIndex(event.target.closest('.card-container'));
-		cards[Link.linkIndex][index].train++;
+		cards[link.linkIndex][index].train++;
 		sessionStorage.setItem('cards', JSON.stringify(cards));
-		Card.soundCard(index);
+		card.soundCard(index);
 	}
 }
 

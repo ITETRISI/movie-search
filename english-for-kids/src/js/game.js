@@ -1,7 +1,7 @@
 import {
 	isElementCard,
 } from './script';
-import Link from './link';
+import { link , drawLinks} from './link';
 import {
 	cards,
 	container,
@@ -24,12 +24,11 @@ class Game {
 		this.startBtn;
 	}
 	
-
-	static createRandomCardsArray() {
-		this.randomCardsArray = cards[Link.linkIndex].map((a) => a).sort(() => 0.5 - Math.random());
+	createRandomCardsArray() {
+		this.randomCardsArray = cards[link.linkIndex].map((a) => a).sort(() => 0.5 - Math.random());
 	}
 
-	static restartGame() {
+	restartGame() {
 		this.startBtn = document.querySelector('.btn-game');
 		if (this.startBtn) {
 			this.startBtn.classList.remove('active');
@@ -41,23 +40,23 @@ class Game {
 		score.innerHTML = '';
 		this.finalScore = [];
 		this.currentCard = 0;
-		Game.createRandomCardsArray();
+		this.createRandomCardsArray();
 	}
 
 	repeatSound() {
-		this.playSound(Game.randomCardsArray[Game.currentCard].audioSrc);
+		this.playSound(this.randomCardsArray[this.currentCard].audioSrc);
 	}
 
 	selectedCard(target) {
 		const index = container.findIndex(target.closest('.card-container'));
-		const card = Game.randomCardsArray[Game.currentCard];
-		if (Game.currentCard < Game.randomCardsArray.length - 1) {
-			if (cards[Link.linkIndex][index] === card) {
+		const card = this.randomCardsArray[this.currentCard];
+		if (this.currentCard < this.randomCardsArray.length - 1) {
+			if (cards[link.linkIndex][index] === card) {
 				this.correctCurd(card);
-				cards[Link.linkIndex][index].correct++;
+				cards[link.linkIndex][index].correct++;
 			} else {
 				this.wrongCard();
-				cards[Link.linkIndex].find((element) => element === card).wrong++;
+				cards[link.linkIndex].find((element) => element === card).wrong++;
 			}
 		} else {
 			this.gameResult();
@@ -67,27 +66,27 @@ class Game {
 
 	correctCurd() {
 		event.target.closest('.card-container').classList.add('inactive');
-		Game.currentCard++;
+		this.currentCard++;
 		this.playSound(correctAudio);
 		setTimeout(() => {
-			this.playSound(Game.randomCardsArray[Game.currentCard].audioSrc);
+			this.playSound(this.randomCardsArray[this.currentCard].audioSrc);
 		}, waitForEndingAudio);
 		score.innerHTML += '<div class="score-correct"></div>';
-		Game.finalScore.push(true);
+		this.finalScore.push(true);
 	}
 
 	wrongCard() {
 		this.playSound(wrongAudio);
 		score.innerHTML += '<div class="score-wrong"></div>';
-		Game.finalScore.push(false);
+		this.finalScore.push(false);
 	}
 
 	gameResult() {
 		container.innerHTML = '';
 		score.innerHTML = '';
-		if (Game.finalScore.includes(false)) {
+		if (this.finalScore.includes(false)) {
 			document.body.classList.add('lose');
-			const errors = Game.finalScore.filter((star) => !star).length;
+			const errors = this.finalScore.filter((star) => !star).length;
 			container.innerHTML = `<span>ошибок ${errors}</span>`;
 			this.playSound(failureAudio);
 		} else {
@@ -97,9 +96,9 @@ class Game {
 		setTimeout(() => {
 			NavigationBar.activeElement(0);
 			document.body.classList.remove('lose', 'win');
-			Game.finalScore = [];
-			Game.currentCard = 0;
-			Link.drawLinks();
+			this.finalScore = [];
+			this.currentCard = 0;
+			drawLinks();
 		}, waitForEndingFinalResult);
 	}
 
@@ -109,8 +108,8 @@ class Game {
 	}
 
 	changeStartBtn(){
-		Game.startBtn.classList.add('active');
-		Game.startBtn.querySelector('button').innerHTML = 'Restart';
+		this.startBtn.classList.add('active');
+		this.startBtn.querySelector('button').innerHTML = 'Restart';
 	}
 }
 
@@ -118,26 +117,26 @@ document.querySelector('#navigation__switch').addEventListener('change', (event)
 	if (event.target.checked) {
 		container.classList.remove('play');
 		container.addEventListener('click', isElementCard);
-		Game.restartGame();
+		game.restartGame();
 	} else {
 		container.classList.add('play');
 		container.removeEventListener('click', isElementCard);
-		Game.createRandomCardsArray();
+		game.createRandomCardsArray();
 	}
 });
 
 function start() {
-	const player = new Game();
-	player.repeatSound();
-	player.changeStartBtn()
+	game.repeatSound();
+	game.changeStartBtn()
 	container.addEventListener('click', clickOnCard);
 }
 
 function clickOnCard(event) {
 	if (event.target.closest('.card') && !event.target.closest('.inactive')) {
-		const card = new Game();
-		card.selectedCard(event.target);
+		game.selectedCard(event.target);
 	}
 }
 
-export default Game;
+const game = new Game()
+
+export default game;

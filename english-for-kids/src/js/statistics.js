@@ -4,11 +4,11 @@ import {
 	cards,
 	template
 } from './data';
-import Card from './card';
+import {drawCards} from './card';
 
 
-export default class Stats {
-	constructor(){
+class Stats {
+	constructor() {
 		this.statistic;
 		this.direction = true;
 		this.difficultWords;
@@ -64,7 +64,7 @@ export default class Stats {
 		}
 		this.cardsArray = JSON.parse(sessionStorage.getItem('cards'));
 	}
-  addEvents() {
+	addEvents() {
 		document.querySelector('.table__btn-repeat').addEventListener('click', () => {
 			this.statistic.sort((a, b) => (b.percent < a.percent ? -1 : 1));
 			this.difficultWords = [];
@@ -76,18 +76,18 @@ export default class Stats {
 			if (this.difficultWords.length !== 0) {
 				cards.push(this.difficultWords);
 				sessionStorage.setItem('cards', JSON.stringify(cards));
-				Card.drawCards(cards.length - 1);
+				drawCards(cards.length - 1);
 			} else {
 				container.innerHTML = '<span>Вы не совершали ошибок</span>';
 			}
 		});
-	
+
 		document.querySelector('.table__btn-reset').addEventListener('click', () => {
 			sessionStorage.setItem('cards', JSON.stringify(defaultCards));
 			this.statistic = [].concat(...defaultCards);
 			this.drawRow();
 		});
-	
+
 		document.querySelector('tr').addEventListener('click', () => {
 			this.sortBy(event.target.closest('th').innerText);
 		});
@@ -95,8 +95,8 @@ export default class Stats {
 
 }
 
-function row(element){
- return `
+function row(element) {
+	return `
  <tr>
 	 <td>${element.word}</td>
 	 <td>${element.translation}</td>
@@ -106,3 +106,6 @@ function row(element){
 	 <td>% ${element.percent}</td>
  </tr>`;
 }
+
+const stats = new Stats();
+export default stats
