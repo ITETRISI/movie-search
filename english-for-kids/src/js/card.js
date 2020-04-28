@@ -29,7 +29,7 @@ class Card {
 	}
 
 	static drawCards(index) {
-		Link.linkIndex = index;
+		Links.linkIndex = index;
 		container.innerHTML = '';
 		cards[index].forEach((element) => {
 			const card = new Card(element);

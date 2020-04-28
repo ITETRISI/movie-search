@@ -6,17 +6,24 @@ import {
 	cards,
 	container,
 	score,
+	waitForEndingFinalResult,
+	waitForEndingAudio,
+	correctAudio,
+	wrongAudio,
+	failureAudio,
+	successAudio
 } from './data';
 import NavigationBar from './menu';
 
 class Game {
-	static randomCardsArray;
 
-	static currentCard;
-
-	static finalScore;
-
-	static startBtn;
+	constructor(){
+		this.randomCardsArray;
+		this.currentCard;
+		this.finalScore;
+		this.startBtn;
+	}
+	
 
 	static createRandomCardsArray() {
 		this.randomCardsArray = cards[Link.linkIndex].map((a) => a).sort(() => 0.5 - Math.random());
@@ -61,16 +68,16 @@ class Game {
 	correctCurd() {
 		event.target.closest('.card-container').classList.add('inactive');
 		Game.currentCard++;
-		this.playSound('./src/audio/correct.mp3');
+		this.playSound(correctAudio);
 		setTimeout(() => {
 			this.playSound(Game.randomCardsArray[Game.currentCard].audioSrc);
-		}, 1000);
+		}, waitForEndingAudio);
 		score.innerHTML += '<div class="score-correct"></div>';
 		Game.finalScore.push(true);
 	}
 
 	wrongCard() {
-		this.playSound('./src/audio/error.mp3');
+		this.playSound(wrongAudio);
 		score.innerHTML += '<div class="score-wrong"></div>';
 		Game.finalScore.push(false);
 	}
@@ -82,10 +89,10 @@ class Game {
 			document.body.classList.add('lose');
 			const errors = Game.finalScore.filter((star) => !star).length;
 			container.innerHTML = `<span>ошибок ${errors}</span>`;
-			this.playSound('./src/audio/failure.mp3');
+			this.playSound(failureAudio);
 		} else {
 			document.body.classList.add('win');
-			this.playSound('./src/audio/success.mp3');
+			this.playSound(successAudio);
 		}
 		setTimeout(() => {
 			NavigationBar.activeElement(0);
@@ -93,12 +100,17 @@ class Game {
 			Game.finalScore = [];
 			Game.currentCard = 0;
 			Link.drawLinks();
-		}, 3000);
+		}, waitForEndingFinalResult);
 	}
 
 	playSound(sound) {
-		const aud = new Audio(sound);
-		aud.play();
+		const audio = new Audio(sound);
+		audio.play();
+	}
+
+	changeStartBtn(){
+		Game.startBtn.classList.add('active');
+		Game.startBtn.querySelector('button').innerHTML = 'Restart';
 	}
 }
 
@@ -117,8 +129,7 @@ document.querySelector('#navigation__switch').addEventListener('change', (event)
 function start() {
 	const player = new Game();
 	player.repeatSound();
-	Game.startBtn.classList.add('active');
-	Game.startBtn.querySelector('button').innerHTML = 'Restart';
+	player.changeStartBtn()
 	container.addEventListener('click', clickOnCard);
 }
 

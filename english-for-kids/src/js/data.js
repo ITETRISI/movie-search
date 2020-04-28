@@ -1,6 +1,32 @@
 const container = document.querySelector('.container');
 const menu = document.querySelector('.navigation__list');
 const score = document.querySelector('.score');
+const template = `
+<div class="table__btn">
+	<button class="table__btn-repeat">Repeat difficult words</button>
+	<button class="table__btn-reset">Reset</button>
+</div>
+<table>
+	<thead>
+		<tr>
+			<th>word <span class="arrow"></span></th>
+			<th>translation</th>
+			<th>train</th>
+			<th>correct</th>
+			<th>wrong</th>
+			<th>percent</th>
+		</tr>
+	</thead>
+	<tbody>
+	</tbody>
+</table>`;
+
+const waitForEndingFinalResult = 3000;
+const waitForEndingAudio = 1000;
+const correctAudio = './src/audio/correct.mp3';
+const wrongAudio = './src/audio/error.mp3';
+const failureAudio = './src/audio/failure.mp3'
+const successAudio = './src/audio/success.mp3'
 
 const links = [{
 	title: 'Action (set A)',
@@ -633,9 +659,16 @@ if (sessionStorage.getItem('cards')) {
 
 export {
 	cards,
+	defaultCards,
 	links,
 	container,
 	menu,
 	score,
-	defaultCards,
+	template, 
+	waitForEndingFinalResult,
+	waitForEndingAudio,
+	correctAudio,
+	wrongAudio,
+	failureAudio,
+	successAudio
 };

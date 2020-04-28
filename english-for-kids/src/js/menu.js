@@ -17,7 +17,7 @@ menu.addEventListener('click', (event) => {
 		if (index < 0) {
 			Link.drawLinks();
 		} else if (index + 1 === menu.childElementCount - 1) {
-			Stats.createTable();
+			new Stats().createTable();
 		} else {
 			Link.linkIndex = index;
 			Card.drawCards(index);

@@ -1,8 +1,6 @@
-import '@babel/polyfill';
 import Link from './link';
 import Card from './card';
 import { container, cards } from './data';
-import './game';
 import NavigationBar from './menu';
 
 Object.prototype.findIndex = function (target) {
@@ -30,7 +28,6 @@ function isElementCard(event) {
 
 container.addEventListener('click', isElementLink);
 container.addEventListener('click', isElementCard);
-
 container.addEventListener('mouseout', (event) => {
 	if (event.target.classList.contains('card')) {
 		event.target.closest('.card-container').classList.remove('translate');
