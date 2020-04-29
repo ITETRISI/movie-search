@@ -1,0 +1,12 @@
+body{
+	background: linear-gradient(to left, #3F5EFB, #FC466B);
+}
+
+header{
+	position: sticky;
+	display: flex;
+  align-items: center;
+	top: 0;
+	height: 60px;
+	background-color: #232d3a;
+}
