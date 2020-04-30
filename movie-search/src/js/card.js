@@ -1,4 +1,4 @@
-import mySwiper from './swiper'
+import { mySwiper } from './swiper'
 
 const cardContainer = document.querySelector('.swiper-wrapper')
 
@@ -25,7 +25,7 @@ export default class Card {
 	}
 
 	createCard(){
-		mySwiper.appendSlide(`
+		cardContainer.innerHTML +=`
 		<div class="swiper-slide">
 			<div class="card__wrapper" style="background-image: url('${this.poster}')">
 			<div class="card__header">
@@ -38,12 +38,12 @@ export default class Card {
 			<button class="card__wrapper-like"></button>
 			<div class="card__body">
 			<span>${this.director}</span>
-			<a href="https://www.imdb.com/title/${this.id}/">${this.title}</a>
+			<a href="https://www.imdb.com/title/${this.id}/" target="_blank">${this.title}</a>
 			<p>${this.plot}</p>
 			</div>
 			</div>
 		</div>
-		`)
+		`
 		mySwiper.update()
 	}
 

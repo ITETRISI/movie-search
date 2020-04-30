@@ -1,18 +1,23 @@
 import Card from './card'
 
+const result = document.querySelector('.result')
+
 class Collection {
 	constructor(){
 
 	}
 
-	async getCollection() {
-		const url = 'http://www.omdbapi.com/?s=star&page=1&apikey=e795be05'
+	async getCollection(keyWord = 'star') {
+		const url = `http://www.omdbapi.com/?s=${keyWord}&page=1&apikey=e795be05`
 		const response = await fetch(url);
 		const data = await response.json();
-		data.Search.forEach(element => {
-			new Card(element).getMoreInfoCard()
-		});
-		
+		if(!data.Error){
+			data.Search.forEach(element => {
+				new Card(element).getMoreInfoCard()
+			});
+		} else {
+			result.innerHTML = data.Error
+		}
 	}
 	
 }
@@ -26,7 +31,6 @@ const mySwiper = new Swiper ('.swiper-container', {
 	loop: true,
 	slidesPerView: 'auto',
 	
-
 	navigation: {
 		nextEl: '.swiper-button-next',
 		prevEl: '.swiper-button-prev',
@@ -52,6 +56,6 @@ const mySwiper = new Swiper ('.swiper-container', {
   }
 })
 
-export default mySwiper
+export { mySwiper , collection }
 
 
