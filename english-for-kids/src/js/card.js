@@ -2,7 +2,7 @@ import {
 	cards,
 	container,
 } from './data';
-import {link} from './link';
+import { link } from './link';
 import Game from './game';
 
 class Card {
@@ -29,7 +29,7 @@ class Card {
 	}
 }
 
-const card = new Card()
+const card = new Card();
 
 function drawCards(index) {
 	link.linkIndex = index;

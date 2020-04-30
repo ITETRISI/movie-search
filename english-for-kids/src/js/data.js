@@ -25,8 +25,8 @@ const waitForEndingFinalResult = 3000;
 const waitForEndingAudio = 1000;
 const correctAudio = './src/audio/correct.mp3';
 const wrongAudio = './src/audio/error.mp3';
-const failureAudio = './src/audio/failure.mp3'
-const successAudio = './src/audio/success.mp3'
+const failureAudio = './src/audio/failure.mp3';
+const successAudio = './src/audio/success.mp3';
 
 const links = [{
 	title: 'Action (set A)',
@@ -664,11 +664,11 @@ export {
 	container,
 	menu,
 	score,
-	template, 
+	template,
 	waitForEndingFinalResult,
 	waitForEndingAudio,
 	correctAudio,
 	wrongAudio,
 	failureAudio,
-	successAudio
+	successAudio,
 };

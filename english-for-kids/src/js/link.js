@@ -1,17 +1,18 @@
 import {
 	links,
-	container
-} from './data'
+	container,
+} from './data';
 
 class Link {
 	constructor() {
-		this.linkIndex = 0
+		this.linkIndex = 0;
 	}
+
 	init(element) {
-		const link = `<div class="link" style="background-image: url(${element.image})">
+		const linkCard = `<div class="link" style="background-image: url(${element.image})">
 		<span>${element.title}</span>
-		</div>`
-		container.innerHTML += link;
+		</div>`;
+		container.innerHTML += linkCard;
 	}
 }
 
@@ -19,10 +20,10 @@ const link = new Link();
 
 function drawLinks() {
 	container.innerHTML = '';
-	links.forEach(element => {
-		link.init(element)
-	})
+	links.forEach((element) => {
+		link.init(element);
+	});
 }
-drawLinks()
+drawLinks();
 
-export {link,drawLinks}
+export { link, drawLinks };

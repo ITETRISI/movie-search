@@ -2,18 +2,30 @@ import {
 	container,
 	defaultCards,
 	cards,
-	template
+	template,
 } from './data';
-import {drawCards} from './card';
+import { drawCards } from './card';
 
+function row(element) {
+	return `
+ <tr>
+	 <td>${element.word}</td>
+	 <td>${element.translation}</td>
+	 <td>${element.train}</td>
+	 <td>${element.correct}</td>
+	 <td>${element.wrong}</td>
+	 <td>% ${element.percent}</td>
+ </tr>`;
+}
 
 class Stats {
 	constructor() {
-		this.statistic;
+		this.statistic = [];
 		this.direction = true;
-		this.difficultWords;
-		this.cardsArray;
+		this.difficultWords = [];
+		this.cardsArray = [];
 	}
+
 	createTable() {
 		this.deleteDifficultWords();
 		this.statistic = [].concat(...this.cardsArray);
@@ -21,17 +33,19 @@ class Stats {
 		this.drawRow();
 		this.addEvents();
 	}
+
 	drawRow() {
 		document.querySelector('tbody').innerHTML = '';
 		this.statistic.forEach((element) => {
-			let number = Math.floor(element.wrong * 100 / (element.wrong + element.correct));
+			let number = Math.floor((element.wrong * 100) / (element.wrong + element.correct));
 			if (!Number.isInteger(number)) {
 				number = 0;
 			}
 			element.percent = number;
-			document.querySelector('tbody').innerHTML += row(element)
+			document.querySelector('tbody').innerHTML += row(element);
 		});
 	}
+
 	sortBy(parameter) {
 		const arrow = document.querySelector('th').classList;
 		if (this.direction) {
@@ -45,6 +59,7 @@ class Stats {
 		}
 		this.drawRow();
 	}
+
 	deleteDifficultWords() {
 		if (cards.length === defaultCards.length + 1) {
 			this.difficultWords = cards.pop();
@@ -56,6 +71,7 @@ class Stats {
 							cards.correct = element.correct;
 							cards.wrong = element.wrong;
 						}
+						return true;
 					});
 				});
 			});
@@ -64,6 +80,7 @@ class Stats {
 		}
 		this.cardsArray = JSON.parse(sessionStorage.getItem('cards'));
 	}
+
 	addEvents() {
 		document.querySelector('.table__btn-repeat').addEventListener('click', () => {
 			this.statistic.sort((a, b) => (b.percent < a.percent ? -1 : 1));
@@ -88,24 +105,11 @@ class Stats {
 			this.drawRow();
 		});
 
-		document.querySelector('tr').addEventListener('click', () => {
+		document.querySelector('tr').addEventListener('click', (event) => {
 			this.sortBy(event.target.closest('th').innerText);
 		});
 	}
-
-}
-
-function row(element) {
-	return `
- <tr>
-	 <td>${element.word}</td>
-	 <td>${element.translation}</td>
-	 <td>${element.train}</td>
-	 <td>${element.correct}</td>
-	 <td>${element.wrong}</td>
-	 <td>% ${element.percent}</td>
- </tr>`;
 }
 
 const stats = new Stats();
-export default stats
+export default stats;

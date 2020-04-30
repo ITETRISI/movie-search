@@ -1,5 +1,5 @@
-import {link,drawLinks} from './link';
-import {drawCards} from './card';
+import { link, drawLinks } from './link';
+import { drawCards } from './card';
 import { menu, score, container } from './data';
 import Stats from './statistics';
 

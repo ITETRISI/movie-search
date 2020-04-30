@@ -1,7 +1,7 @@
 import {
 	isElementCard,
 } from './script';
-import { link , drawLinks} from './link';
+import { link, drawLinks } from './link';
 import {
 	cards,
 	container,
@@ -11,19 +11,32 @@ import {
 	correctAudio,
 	wrongAudio,
 	failureAudio,
-	successAudio
+	successAudio,
 } from './data';
 import NavigationBar from './menu';
 
-class Game {
+const game = new Game();
 
-	constructor(){
-		this.randomCardsArray;
-		this.currentCard;
-		this.finalScore;
-		this.startBtn;
+function clickOnCard(event) {
+	if (event.target.closest('.card') && !event.target.closest('.inactive')) {
+		game.selectedCard(event.target);
 	}
-	
+}
+
+function start() {
+	game.repeatSound();
+	game.changeStartBtn();
+	container.addEventListener('click', clickOnCard);
+}
+
+class Game {
+	constructor() {
+		this.randomCardsArray = [];
+		this.currentCard = 0;
+		this.finalScore = 0;
+		this.startBtn = '';
+	}
+
 	createRandomCardsArray() {
 		this.randomCardsArray = cards[link.linkIndex].map((a) => a).sort(() => 0.5 - Math.random());
 	}
@@ -64,7 +77,7 @@ class Game {
 		sessionStorage.setItem('cards', JSON.stringify(cards));
 	}
 
-	correctCurd() {
+	correctCurd(event) {
 		event.target.closest('.card-container').classList.add('inactive');
 		this.currentCard++;
 		this.playSound(correctAudio);
@@ -107,7 +120,7 @@ class Game {
 		audio.play();
 	}
 
-	changeStartBtn(){
+	changeStartBtn() {
 		this.startBtn.classList.add('active');
 		this.startBtn.querySelector('button').innerHTML = 'Restart';
 	}
@@ -125,18 +138,5 @@ document.querySelector('#navigation__switch').addEventListener('change', (event)
 	}
 });
 
-function start() {
-	game.repeatSound();
-	game.changeStartBtn()
-	container.addEventListener('click', clickOnCard);
-}
-
-function clickOnCard(event) {
-	if (event.target.closest('.card') && !event.target.closest('.inactive')) {
-		game.selectedCard(event.target);
-	}
-}
-
-const game = new Game()
 
 export default game;

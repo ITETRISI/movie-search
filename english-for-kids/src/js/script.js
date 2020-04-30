@@ -1,9 +1,9 @@
-import {link} from './link';
-import {card,drawCards} from './card';
+import { link } from './link';
+import { card, drawCards } from './card';
 import { container, cards } from './data';
 import NavigationBar from './menu';
 
-Object.prototype.findIndex = function (target) {
+Object.prototype.findIndex = function findIndex(target) {
 	return [].indexOf.call(this.children, target);
 };
 
