@@ -1,61 +1,52 @@
-import Card from './card'
-
-const result = document.querySelector('.result')
+import Card from './card';
+import {
+	cardContainer,
+	result,
+	mySwiper
+} from './data';
 
 class Collection {
-	constructor(){
-
+	constructor() {
+		this.page = 1;
+		this.searchWord = '';
 	}
 
 	async getCollection(keyWord = 'star') {
-		const url = `http://www.omdbapi.com/?s=${keyWord}&page=1&apikey=e795be05`
+		try{
+		const url = `http://www.omdbapi.com/?s=${keyWord}&page=${this.page}&apikey=e795be05`
 		const response = await fetch(url);
 		const data = await response.json();
-		if(!data.Error){
-			data.Search.forEach(element => {
-				new Card(element).getMoreInfoCard()
-			});
+		if (!data.Error) {
+			for(const item of data.Search){
+				await new Card(item).getMoreInfoCard()
+			}
+			this.searchWord = keyWord;
 		} else {
-			result.innerHTML = data.Error
+			result.innerHTML = `No results for ${keyWord}`
 		}
+		cardContainer.classList.add('show')
+	} catch (error) {
+		result.innerHTML = error;
 	}
-	
+	}
+
+	updateCollection() {
+		this.page++;
+		this.getCollection(this.searchWord)
+	}
+}
+
+function addEventOnSwiper() {
+	mySwiper.on('reachEnd', function () {
+		collection.updateCollection()
+	});
 }
 
 const collection = new Collection();
-collection.getCollection()
+collection.getCollection();
+addEventOnSwiper();
 
-const mySwiper = new Swiper ('.swiper-container', {
-	speed: 1500,
-	direction: 'horizontal',
-	loop: true,
-	slidesPerView: 'auto',
-	
-	navigation: {
-		nextEl: '.swiper-button-next',
-		prevEl: '.swiper-button-prev',
-	},
-
-	breakpoints: {
-		300:{
-			slidesPerView:1,
-			slidesPerGroup:1,
-		},
-    768: {
-      slidesPerView: 2,
-			slidesPerGroup:2,
-    },
-    1024: {
-      slidesPerView: 3,
-			slidesPerGroup:3,
-    },
-    1300: {
-			slidesPerView: 4,				
-			slidesPerGroup:4,
-    }
-  }
-})
-
-export { mySwiper , collection }
-
-
+export {
+	addEventOnSwiper,
+	collection
+}

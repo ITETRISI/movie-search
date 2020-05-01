@@ -1,16 +1,17 @@
-import { mySwiper } from './swiper'
-
-const cardContainer = document.querySelector('.swiper-wrapper')
+import {
+	cardContainer,
+	mySwiper
+} from './data'
 
 export default class Card {
 	constructor(options){
 		this.poster = options.Poster;
 		this.title = options.Title;
 		this.id = options.imdbID
-		this.plot;
-		this.released;
-		this.director;
-		this.rating;
+		this.plot = '';
+		this.released = '';
+		this.director = '';
+		this.rating = '';
 	}
 
 	async getMoreInfoCard(){
@@ -21,6 +22,9 @@ export default class Card {
 		this.released = data.Released;
 		this.director = data.Director;
 		this.rating = data.imdbRating;
+		if(this.poster === 'N/A'){
+			this.poster = '../src/image/no-poster.jpg'
+		}
 		this.createCard()
 	}
 
@@ -46,6 +50,4 @@ export default class Card {
 		`
 		mySwiper.update()
 	}
-
-
 }
