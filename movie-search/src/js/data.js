@@ -105,7 +105,8 @@ const arrayOfKeys = [
 ];
 
 const keyboardShowBtn = document.querySelector('.keyboardShowBtn')
-const keyboardClassList = document.querySelector('.keyboard').classList
+const keyboardClassList = document.querySelector('.keyboard').classList;
+const userCollection = document.querySelector('.user__collection')
 
 export {
 	cardContainer,
@@ -119,4 +120,5 @@ export {
 	arrayOfKeys,
 	keyboardShowBtn,
 	keyboardClassList,
+	userCollection,
 }

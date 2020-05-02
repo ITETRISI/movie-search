@@ -5,10 +5,31 @@ body{
 header{
 	position: sticky;
 	display: flex;
-  align-items: center;
+	align-items: center;
+	justify-content: space-around;
 	top: 0;
 	height: 60px;
 	background-color: #232d3a;
+	font-family: 'Open Sans', sans-serif;
+	color: #fff;
+}
+
+.logo span{
+	color:#fb5352;
+}
+
+.user__collection {
+	font-size: 19px;
+	letter-spacing: 1.5px;
+	
+	text-decoration: none;
+	color: #fff;
+	transition: .5s;
+}
+
+.user__collection:hover{
+	text-decoration: underline;
+	color:#fb5352;
 }
 
 main {

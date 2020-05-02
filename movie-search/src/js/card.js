@@ -5,9 +5,9 @@ import {
 
 export default class Card {
 	constructor(options){
-		this.poster = options.Poster;
-		this.title = options.Title;
 		this.id = options.imdbID
+		this.poster = '';
+		this.title = '';
 		this.plot = '';
 		this.released = '';
 		this.director = '';
@@ -22,8 +22,11 @@ export default class Card {
 		this.released = data.Released;
 		this.director = data.Director;
 		this.rating = data.imdbRating;
-		if(this.poster === 'N/A'){
+		this.title = data.Title
+		if(data.Poster === 'N/A'){
 			this.poster = '../src/image/no-poster.jpg'
+		} else {
+			this.poster = data.Poster;
 		}
 		this.createCard()
 	}
