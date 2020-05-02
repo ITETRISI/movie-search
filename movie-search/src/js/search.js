@@ -7,7 +7,8 @@ import {
 	loader,
 	delay,
 	result,
-	mySwiper
+	mySwiper,
+	keyboardShowBtn
 } from './data'
 
 function isCyrillic(word){
@@ -72,3 +73,18 @@ searchBtn.addEventListener('click',()=>{
 cancelBtn.addEventListener('click',()=>{
 	input.value = '';
 })
+
+keyboardShowBtn.addEventListener('click',()=>{
+	showKeyboard()
+})
+
+function showKeyboard(){
+	if(document.querySelector('.keyboard').classList.contains('show')){
+		document.querySelector('.keyboard').classList.remove('show')
+	} else {
+		document.querySelector('.keyboard').classList.add('show')
+	}
+		
+}
+
+export { search , showKeyboard }

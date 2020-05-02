@@ -181,7 +181,7 @@ main {
 	margin: 0 10px;
 }
 
-.cancel,.search{
+.cancel,.search,.keyboardShowBtn{
 	background-image: url('../image/shapes-and-symbols.svg');
 	background-size: cover;
 	min-width: 25px;
@@ -210,4 +210,86 @@ main {
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+.keyboard button {
+	height: 40px;
+	width: 40px;
+	font-size: 17px;
+	background-color: #232d3a;
+	color: #7C98AE;
+	border: 0;
+	outline: 1px solid #7C98AE;
+	outline-offset: -1px;
+	transition: 0.1s;
+	margin: 1px;
+}
+
+.keyboardShowBtn{
+	min-width: 40px;
+	background-image: url('../image/keyboard.svg');
+	background-position: center, center;
+	margin-left: 5px;
+}
+
+.keyboard div {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.keyboard .active {
+	background-color: #5f6769;
+}
+
+.keyboard {
+	position: absolute;
+	width: 600px;
+	margin: 0 auto;
+	z-index: 10;
+	background-color: #232d3a;
+	transition: all .5s;
+	transform: translateY(-150px) scale(0);
+	opacity: 0;
+}
+
+.search__container .show {
+	opacity: 1;
+	transform: translateY(150px) scale(1);
+}
+
+.text_area {
+	display: block;
+	font-size: 20px;
+	margin: 40px auto;
+}
+
+#CapsLock{
+	font-size: 12px;
+	width: 80px
+}
+
+#Enter{
+	width:76px;
+}
+
+#Tab {
+	width: 74px;
+}
+
+#Backspace{
+	font-size: 12px;
+	width: 74px;
+}
+
+#ShiftLeft,#ShiftRight{
+	width:99px
+}
+
+#ControlLeft,#ControlRight{
+	width:126px
+}
+
+#Space {
+	width: 280px;
 }
