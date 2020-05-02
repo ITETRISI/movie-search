@@ -66,7 +66,6 @@ class Keyboard {
 				break;
 			case 'Enter':
 				search.startSearch();
-				showKeyboard();
 				break;
 			case 'Backspace':
 				if (input.selectionStart !== 0) input.setRangeText('', input.selectionStart - 1, input.selectionStart, 'end');

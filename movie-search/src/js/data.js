@@ -65,7 +65,6 @@ const arrayOfKeys = [
 		{ id: 'BracketLeft', value: ['[', '{', 'х', 'Х'] },
 		{ id: 'BracketRight', value: [']', '}', 'ъ', 'Ъ'] },
 		{ id: 'Backslash', value: ['\\', '|', '\\', '/'] },
-		//{ id: 'Delete', value: ['Del', 'Del', 'Del', 'Del'] },
 	],
 	[
 		{ id: 'CapsLock', value: ['CapsLock', 'CapsLock', 'CapsLock', 'CapsLock'] },
@@ -94,24 +93,19 @@ const arrayOfKeys = [
 		{ id: 'Comma', value: [',', '<', 'б', 'Б'] },
 		{ id: 'Period', value: ['.', '>', 'ю', 'Ю'] },
 		{ id: 'Slash', value: ['/', '?', '.', ','] },
-		//{ id: 'ArrowUp', value: ['\u2191', '\u2191', '\u2191', '\u2191'] },
 		{ id: 'ShiftRight', value: ['Shift', 'Shift', 'Shift', 'Shift'] },
 	],
 	[
 		{ id: 'ControlLeft', value: ['Ctrl + Alt', 'Ctrl + Alt', 'Ctrl + Alt', 'Ctrl + Alt'] },
-		//{ id: 'MetaLeft', value: ['Win', 'Win', 'Win', 'Win'] },
-		//{ id: 'AltLeft', value: ['Alt', 'Alt', 'Alt', 'Alt'] },
 		{ id: 'Space', value: ['Space', 'Space', 'Space', 'Space'] },
-		//{ id: 'AltRight', value: ['Alt', 'Alt', 'Alt', 'Alt'] },
 		{ id: 'ArrowLeft', value: ['\u2190', '\u2190', '\u2190', '\u2190'] },
-		//{ id: 'ArrowDown', value: ['\u2193', '\u2193', '\u2193', '\u2193'] },
 		{ id: 'ArrowRight', value: ['\u2192', '\u2192', '\u2192', '\u2192'] },
 		{ id: 'ControlRight', value: ['Ctrl + Alt', 'Ctrl + Alt', 'Ctrl + Alt', 'Ctrl + Alt'] },
 	],
 ];
 
 const keyboardShowBtn = document.querySelector('.keyboardShowBtn')
-
+const keyboardClassList = document.querySelector('.keyboard').classList
 
 export {
 	cardContainer,
@@ -124,4 +118,5 @@ export {
 	mySwiper,
 	arrayOfKeys,
 	keyboardShowBtn,
+	keyboardClassList,
 }

@@ -8,11 +8,20 @@ import {
 	delay,
 	result,
 	mySwiper,
-	keyboardShowBtn
+	keyboardShowBtn,
+	keyboardClassList
 } from './data'
 
 function isCyrillic(word){
 	return /[а-яё]/i.test(word);
+}
+
+function showKeyboard(){
+	if(keyboardClassList.contains('show')){
+		keyboardClassList.remove('show')
+	} else {
+		keyboardClassList.add('show')
+	}
 }
 
 class Search {
@@ -21,6 +30,7 @@ class Search {
 	}
 
 	async startSearch(){
+		result.innerHTML = '';
 		if(input.value){
 			if(isCyrillic(input.value)){
 				const url = `https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20200424T194324Z.1fc3d382b16099a7.576c0a6f5f134312f2eaec19bb60b5a666de1916&text=${input.value}&lang=ru-en`
@@ -50,23 +60,14 @@ class Search {
 	}
 
 	showLoader(){
-		searchBtn.style.display = searchBtn.style.display==='none' ? 'block':'none'
-		loader.style.display = loader.style.display==='block' ? 'none' : 'block';
+		searchBtn.style.display = searchBtn.style.display === 'none' ? 'block':'none'
+		loader.style.display = loader.style.display === 'block' ? 'none' : 'block';
 	}
-	
 }
 
 const search = new Search()
 
-input.addEventListener('keydown',(event)=>{
- if(event.key === 'Enter'){
-	  result.innerHTML = '';
-	  search.startSearch();
- }
-})
-
 searchBtn.addEventListener('click',()=>{
-	result.innerHTML = '';
 	search.startSearch();
 })
 
@@ -77,14 +78,5 @@ cancelBtn.addEventListener('click',()=>{
 keyboardShowBtn.addEventListener('click',()=>{
 	showKeyboard()
 })
-
-function showKeyboard(){
-	if(document.querySelector('.keyboard').classList.contains('show')){
-		document.querySelector('.keyboard').classList.remove('show')
-	} else {
-		document.querySelector('.keyboard').classList.add('show')
-	}
-		
-}
 
 export { search , showKeyboard }

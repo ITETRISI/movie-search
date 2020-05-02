@@ -39,7 +39,6 @@ main {
 	opacity: 1;
 }
 
-
 .card__wrapper {
 	background-size: cover;
 	position: relative;
@@ -179,6 +178,10 @@ main {
 	caret-color: #fff;
 	font-family: 'Open Sans', sans-serif;
 	margin: 0 10px;
+}
+
+input::selection {
+	background: #fb5252c0; /* Цвет фона */
 }
 
 .cancel,.search,.keyboardShowBtn{
