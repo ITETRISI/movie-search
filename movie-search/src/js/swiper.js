@@ -9,26 +9,30 @@ import {
 class Collection {
 	constructor() {
 		this.page = 1;
-		this.searchWord = '';
+		this.searchWord = 'star';
 		this.favoriteCollection = []
 	}
 
-	async getCollection(keyWord = 'star') {
+	async getCollection(keyWord = this.searchWord) {
 		try {
 			const url = `http://www.omdbapi.com/?s=${keyWord}&page=${this.page}&apikey=e795be05`
 			const response = await fetch(url);
 			const data = await response.json();
-			if (!data.Error) {
-				for (const item of data.Search) {
-					await new Card(item).getMoreInfoCard()
-				}
-				this.searchWord = keyWord;
-			} else {
-				result.innerHTML = `No results for ${keyWord}`
-			}
-			cardContainer.classList.add('show')
+			this.checkRequestOnErrors(data, keyWord)
 		} catch (error) {
 			result.innerHTML = error;
+		}
+	}
+
+	checkRequestOnErrors(data, keyWord){
+		if (!data.Error ) {
+			if(keyWord !== this.searchWord){
+				removeEventOnSwiper()
+				this.searchWord = keyWord;
+			}
+			this.drawCollection(data.Search)
+		} else {
+			result.innerHTML = `No results for ${keyWord}`
 		}
 	}
 
@@ -37,11 +41,8 @@ class Collection {
 		this.getCollection(this.searchWord)
 	}
 
-	async drawUserCollection() {
-		mySwiper.off('reachEnd');
-		mySwiper.removeAllSlides();
-		mySwiper.update();
-		for (const item of this.favoriteCollection) {
+	async drawCollection(array) {
+		for (const item of array) {
 			await new Card(item).getMoreInfoCard()
 		}
 		cardContainer.classList.add('show')
@@ -55,24 +56,37 @@ function addEventOnSwiper() {
 	});
 }
 
+function removeEventOnSwiper() {
+	mySwiper.off('reachEnd');
+	mySwiper.removeAllSlides();
+	mySwiper.update();
+	cardContainer.classList.remove('show');
+}
+
 const collection = new Collection();
 collection.getCollection();
 addEventOnSwiper();
 
 cardContainer.addEventListener('click', (event) => {
 	if (event.target.classList.contains('card__wrapper-like')) {
-		let cardId = event.target.nextElementSibling.querySelector('a').href.split('/').splice(4, 1)
-		collection.favoriteCollection.push({
-			imdbID: cardId.join()
-		})
+		const cardHref = event.target.nextElementSibling.querySelector('a').href;
+		const cardId = {
+			imdbID: cardHref.split('/').splice(4, 1).join()
+		}
+		if (!collection.favoriteCollection.find(element => element.imdbID === cardId.imdbID)) {
+			collection.favoriteCollection.push(cardId)
+		}
 	}
 })
 
-userCollection.addEventListener('click', (event) => {
-	collection.drawUserCollection()
+userCollection.addEventListener('click', () => {
+	result.innerHTML = "Press on heart to add in your collection"
+	removeEventOnSwiper()
+	collection.drawCollection(collection.favoriteCollection)
 })
 
 export {
+	removeEventOnSwiper,
 	addEventOnSwiper,
 	collection
 }

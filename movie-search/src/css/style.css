@@ -51,7 +51,7 @@ main {
 	justify-content: center;
 	align-items: center;
 	min-width: 300px ;
-	padding: 50px 0;
+	padding: 27px 0;
 	opacity: 0;
 }
 
@@ -90,6 +90,10 @@ main {
 
 .card__wrapper-like:hover{
 	transform: scale(1.6);
+}
+
+.card__wrapper-like:active{
+	transform: scale(1);
 }
 
 .card__wrapper-like {
@@ -187,6 +191,7 @@ main {
 	padding: 10px 18px;
 	border-radius: 15px;
 	margin: 20px 0;
+	box-shadow: 4px 2px 34px -6px rgba(0,0,0,0.75);
 }
 
 .input {

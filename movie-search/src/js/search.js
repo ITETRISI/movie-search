@@ -1,23 +1,24 @@
-import { addEventOnSwiper , collection } from './swiper';
 import {
-	cardContainer,
+	removeEventOnSwiper,
+	addEventOnSwiper,
+	collection
+} from './swiper';
+import {
 	input,
 	searchBtn,
 	cancelBtn,
 	loader,
-	delay,
 	result,
-	mySwiper,
 	keyboardShowBtn,
 	keyboardClassList
 } from './data'
 
-function isCyrillic(word){
+function isCyrillic(word) {
 	return /[а-яё]/i.test(word);
 }
 
-function showKeyboard(){
-	if(keyboardClassList.contains('show')){
+function showKeyboard() {
+	if (keyboardClassList.contains('show')) {
 		keyboardClassList.remove('show')
 	} else {
 		keyboardClassList.add('show')
@@ -25,14 +26,14 @@ function showKeyboard(){
 }
 
 class Search {
-	constructor(){
+	constructor() {
 		this.newWord = '';
 	}
 
-	async startSearch(){
+	async startSearch() {
 		result.innerHTML = '';
-		if(input.value){
-			if(isCyrillic(input.value)){
+		if (input.value) {
+			if (isCyrillic(input.value)) {
 				const url = `https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20200424T194324Z.1fc3d382b16099a7.576c0a6f5f134312f2eaec19bb60b5a666de1916&text=${input.value}&lang=ru-en`
 				const response = await fetch(url);
 				const data = await response.json();
@@ -41,42 +42,39 @@ class Search {
 			} else {
 				this.newWord = input.value;
 			}
-			mySwiper.off('reachEnd');
-			mySwiper.removeAllSlides();
-			mySwiper.update();
 			this.waitingForLoading()
 		}
 	}
 
 	async waitingForLoading() {
-		collection.searchWord = this.newWord;
 		collection.page = 1;
 		this.showLoader();
-		cardContainer.classList.remove('show');
-		await delay(500);
 		await collection.getCollection(this.newWord);
-		addEventOnSwiper()
 		this.showLoader()
+		addEventOnSwiper()
 	}
 
-	showLoader(){
-		searchBtn.style.display = searchBtn.style.display === 'none' ? 'block':'none'
+	showLoader() {
+		searchBtn.style.display = searchBtn.style.display === 'none' ? 'block' : 'none'
 		loader.style.display = loader.style.display === 'block' ? 'none' : 'block';
 	}
 }
 
 const search = new Search()
 
-searchBtn.addEventListener('click',()=>{
+searchBtn.addEventListener('click', () => {
 	search.startSearch();
 })
 
-cancelBtn.addEventListener('click',()=>{
+cancelBtn.addEventListener('click', () => {
 	input.value = '';
 })
 
-keyboardShowBtn.addEventListener('click',()=>{
+keyboardShowBtn.addEventListener('click', () => {
 	showKeyboard()
 })
 
-export { search , showKeyboard }
+export {
+	search,
+	showKeyboard
+}
