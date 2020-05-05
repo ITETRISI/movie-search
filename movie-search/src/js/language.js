@@ -9,15 +9,13 @@ class Language {
 		return Number(sessionStorage.getItem('lang'));
 	}
 
-	changeLanguage(event) {
-		if (event.ctrlKey) {
-			if (sessionStorage.getItem('lang') >= 2) {
-				sessionStorage.setItem('lang', Number(sessionStorage.getItem('lang')) - 2);
-			} else {
-				sessionStorage.setItem('lang', Number(sessionStorage.getItem('lang')) + 2);
-			}
-			keyboard.rewriteKey();
+	changeLanguage() {
+		if (sessionStorage.getItem('lang') >= 2) {
+			sessionStorage.setItem('lang', Number(sessionStorage.getItem('lang')) - 2);
+		} else {
+			sessionStorage.setItem('lang', Number(sessionStorage.getItem('lang')) + 2);
 		}
+		keyboard.rewriteKey();
 	}
 }
 

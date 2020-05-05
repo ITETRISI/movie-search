@@ -15,7 +15,7 @@ export default class Card {
 	}
 
 	async getMoreInfoCard(){
-		const url = `http://www.omdbapi.com/?i=${this.id}&apikey=e795be05`
+		const url = `https://www.omdbapi.com/?i=${this.id}&apikey=e795be05`
 		const response = await fetch(url);
 		const data = await response.json();
 		this.plot = data.Plot;

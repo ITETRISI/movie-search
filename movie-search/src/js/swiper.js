@@ -15,7 +15,7 @@ class Collection {
 
 	async getCollection(keyWord = this.searchWord) {
 		try {
-			const url = `http://www.omdbapi.com/?s=${keyWord}&page=${this.page}&apikey=e795be05`
+			const url = `https://www.omdbapi.com/?s=${keyWord}&page=${this.page}&apikey=e795be05`
 			const response = await fetch(url);
 			const data = await response.json();
 			this.checkRequestOnErrors(data, keyWord)

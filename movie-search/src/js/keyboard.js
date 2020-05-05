@@ -35,8 +35,10 @@ class Keyboard {
 	pressKey(keyCode) {
 		switch (keyCode) {
 			case 'ControlLeft':
+				language.changeLanguage();
 				break;
 			case 'ControlRight':
+				language.changeLanguage();
 				break;
 			case 'ShiftLeft':
 				this.downShift(keyCode);
@@ -143,7 +145,6 @@ window.addEventListener('load', () => {
 	document.addEventListener('keydown', (event) => {
 		event.preventDefault();
 		try{
-		language.changeLanguage(event);
 		keyboard.pressKey(event.code);
 		document.querySelector(`#${event.code}`).classList.add('active');
 		} catch(error){}
