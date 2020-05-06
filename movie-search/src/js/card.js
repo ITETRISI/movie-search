@@ -23,18 +23,14 @@ export default class Card {
 		this.director = data.Director;
 		this.rating = data.imdbRating;
 		this.title = data.Title
-		if(data.Poster === 'N/A'){
-			this.poster = '../src/image/no-poster.jpg'
-		} else {
-			this.poster = data.Poster;
-		}
+		this.poster = data.Poster;
 		this.createCard()
 	}
 
 	createCard(){
 		cardContainer.innerHTML +=`
 		<div class="swiper-slide">
-			<div class="card__wrapper" style="background-image: url('${this.poster}')">
+			<div class="card__wrapper" style="background-image: url('${this.poster}'),url('../src/image/no-poster.jpg');">
 			<div class="card__header">
 			<span>${this.released}</span>
 			<div class="card__header-rating">

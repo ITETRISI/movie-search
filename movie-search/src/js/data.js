@@ -1,4 +1,5 @@
 const cardContainer = document.querySelector('.swiper-wrapper')
+const container = document.querySelector('.swiper-container')
 const result = document.querySelector('.result')
 const input = document.querySelector('.input');
 const searchBtn = document.querySelector('.search');
@@ -109,6 +110,7 @@ const keyboardClassList = document.querySelector('.keyboard').classList;
 const userCollection = document.querySelector('.user__collection')
 
 export {
+	container,
 	cardContainer,
 	result,
 	input,

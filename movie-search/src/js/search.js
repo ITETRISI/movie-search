@@ -4,6 +4,7 @@ import {
 	collection
 } from './swiper';
 import {
+	container,
 	input,
 	searchBtn,
 	cancelBtn,
@@ -20,8 +21,10 @@ function isCyrillic(word) {
 function showKeyboard() {
 	if (keyboardClassList.contains('show')) {
 		keyboardClassList.remove('show')
+		container.classList.remove('active')
 	} else {
 		keyboardClassList.add('show')
+		container.classList.add('active')
 	}
 }
 

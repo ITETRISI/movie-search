@@ -3,7 +3,7 @@ import {
 	input,
 } from './data';
 import language from './language';
-import { search, showKeyboard } from './search';
+import { search } from './search';
 
 class Keyboard {
 	constructor() {
@@ -35,16 +35,14 @@ class Keyboard {
 	pressKey(keyCode) {
 		switch (keyCode) {
 			case 'ControlLeft':
-				language.changeLanguage();
+				language.changeLanguage(keyCode);
 				break;
 			case 'ControlRight':
-				language.changeLanguage();
+				language.changeLanguage(keyCode);
 				break;
 			case 'ShiftLeft':
-				this.downShift(keyCode);
 				break;
 			case 'ShiftRight':
-				this.downShift(keyCode);
 				break;
 			case 'CapsLock':
 				break;
@@ -132,26 +130,21 @@ document.querySelector('.keyboard').innerHTML += `
   <div id="keyboard_row-3"></div>
   <div id="keyboard_row-4"></div>`;
 
-input.focus();
-input.onblur = () => {
-	input.focus();
-};
-
 const keyboard = new Keyboard();
 
 keyboard.drawKeyboard();
 
 window.addEventListener('load', () => {
 	document.addEventListener('keydown', (event) => {
-		event.preventDefault();
 		try{
-		keyboard.pressKey(event.code);
+		keyboard.downShift(event.code);
 		document.querySelector(`#${event.code}`).classList.add('active');
 		} catch(error){}
 	});
 
 	document.addEventListener('keyup', (event) => {
 		try {
+			language.changeLanguage(event.code);
 			keyboard.upShift(event.code);
 			document.querySelector(`#${event.code}`).classList.remove('active');
 			keyboard.pressCapsLock(event.code);

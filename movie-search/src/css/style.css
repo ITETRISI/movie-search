@@ -2,6 +2,10 @@ body{
 	background: linear-gradient(to left, #3F5EFB, #FC466B);
 }
 
+*::selection {
+	background: #fb5252c0;
+}
+
 header{
 	position: sticky;
 	display: flex;
@@ -206,10 +210,6 @@ main {
 	margin: 0 10px;
 }
 
-input::selection {
-	background: #fb5252c0; /* Цвет фона */
-}
-
 .cancel,.search,.keyboardShowBtn{
 	background-image: url('../image/shapes-and-symbols.svg');
 	background-size: cover;
@@ -249,9 +249,8 @@ input::selection {
 	color: #7C98AE;
 	border: 0;
 	outline: 1px solid #7C98AE;
-	outline-offset: -1px;
+	outline-offset: -2px;
 	transition: 0.1s;
-	margin: 1px;
 }
 
 .keyboardShowBtn{
@@ -259,6 +258,19 @@ input::selection {
 	background-image: url('../image/keyboard.svg');
 	background-position: center, center;
 	margin-left: 5px;
+	transition: .5s;
+}
+
+.show + .keyboardShowBtn {
+	background-image: url('../image/keyboard-active.svg');
+}
+
+.swiper-container{
+	transition: .5s;
+}
+
+.swiper-container.active {
+	transform: translateY(210px);
 }
 
 .keyboard div {
@@ -273,7 +285,7 @@ input::selection {
 
 .keyboard {
 	position: absolute;
-	width: 600px;
+	width: 590px;
 	margin: 0 auto;
 	z-index: 10;
 	background-color: #232d3a;
@@ -282,9 +294,9 @@ input::selection {
 	opacity: 0;
 }
 
-.search__container .show {
+.keyboard.show {
 	opacity: 1;
-	transform: translateY(150px) scale(1);
+	transform: translateY(160px) scale(1);
 }
 
 .text_area {
