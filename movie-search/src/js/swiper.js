@@ -4,6 +4,7 @@ import {
 	result,
 	mySwiper,
 	userCollection,
+	userCollectionCount,
 } from './data';
 
 class Collection {
@@ -32,7 +33,7 @@ class Collection {
 			}
 			this.drawCollection(data.Search)
 		} else {
-			result.innerHTML = `No results for ${keyWord}`
+			result.innerHTML = `No results for <span>${keyWord}</span>`
 		}
 	}
 
@@ -74,13 +75,14 @@ cardContainer.addEventListener('click', (event) => {
 			imdbID: cardHref.split('/').splice(4, 1).join()
 		}
 		if (!collection.favoriteCollection.find(element => element.imdbID === cardId.imdbID)) {
+			userCollectionCount.innerText = 1 + Number(userCollectionCount.innerText)
 			collection.favoriteCollection.push(cardId)
 		}
 	}
 })
 
 userCollection.addEventListener('click', () => {
-	result.innerHTML = "Press on heart to add in your collection"
+	result.innerHTML = "Press on <span>heart</span> to add in your collection"
 	removeEventOnSwiper()
 	collection.drawCollection(collection.favoriteCollection)
 })

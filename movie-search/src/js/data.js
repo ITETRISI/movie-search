@@ -106,8 +106,9 @@ const arrayOfKeys = [
 ];
 
 const keyboardShowBtn = document.querySelector('.keyboardShowBtn')
-const keyboardClassList = document.querySelector('.keyboard').classList;
+const keyboard = document.querySelector('.keyboard');
 const userCollection = document.querySelector('.user__collection')
+const userCollectionCount = document.querySelector('.user__collection-count')
 
 export {
 	container,
@@ -121,6 +122,7 @@ export {
 	mySwiper,
 	arrayOfKeys,
 	keyboardShowBtn,
-	keyboardClassList,
+	keyboard,
 	userCollection,
+	userCollectionCount,
 }

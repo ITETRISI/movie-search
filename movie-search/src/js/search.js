@@ -1,5 +1,4 @@
 import {
-	removeEventOnSwiper,
 	addEventOnSwiper,
 	collection
 } from './swiper';
@@ -11,7 +10,7 @@ import {
 	loader,
 	result,
 	keyboardShowBtn,
-	keyboardClassList
+	keyboard
 } from './data'
 
 function isCyrillic(word) {
@@ -19,11 +18,11 @@ function isCyrillic(word) {
 }
 
 function showKeyboard() {
-	if (keyboardClassList.contains('show')) {
-		keyboardClassList.remove('show')
+	if (keyboard.classList.contains('show')) {
+		keyboard.classList.remove('show')
 		container.classList.remove('active')
 	} else {
-		keyboardClassList.add('show')
+		keyboard.classList.add('show')
 		container.classList.add('active')
 	}
 }
@@ -41,7 +40,7 @@ class Search {
 				const response = await fetch(url);
 				const data = await response.json();
 				this.newWord = data.text[0]
-				result.innerHTML = `Showing results for ${this.newWord}`
+				result.innerHTML = `Showing results for <span>${this.newWord}</span>`
 			} else {
 				this.newWord = input.value;
 			}
