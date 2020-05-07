@@ -64,6 +64,12 @@ class Search {
 
 const search = new Search()
 
+document.addEventListener('keyup', (event) => {
+	if(event.code === 'Enter'){
+		search.startSearch()
+	}
+})
+
 searchBtn.addEventListener('click', () => {
 	search.startSearch();
 })

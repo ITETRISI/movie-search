@@ -6,6 +6,7 @@ const searchBtn = document.querySelector('.search');
 const cancelBtn = document.querySelector('.cancel');
 const loader = document.querySelector('.loader');
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
+
 const mySwiper = new Swiper ('.swiper-container', {
 	speed: 1000,
 	direction: 'horizontal',
