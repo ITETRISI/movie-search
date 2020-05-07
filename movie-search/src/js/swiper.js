@@ -19,7 +19,7 @@ class Collection {
 			const url = `https://www.omdbapi.com/?s=${keyWord}&page=${this.page}&apikey=e795be05`
 			const response = await fetch(url);
 			const data = await response.json();
-			this.checkRequestOnErrors(data, keyWord)
+			await this.checkRequestOnErrors(data, keyWord)
 		} catch (error) {
 			result.innerHTML = error;
 		}
@@ -33,7 +33,7 @@ class Collection {
 			}
 			this.drawCollection(data.Search)
 		} else {
-			result.innerHTML = `No results for <span>${keyWord}</span>`
+			result.innerHTML = data.Error
 		}
 	}
 
@@ -49,6 +49,16 @@ class Collection {
 		cardContainer.classList.add('show')
 	}
 
+	updateUserCollection(){
+		removeEventOnSwiper()
+		cardContainer.classList.add('films-collection')
+		this.drawCollection(collection.favoriteCollection)
+	}
+
+	checkUserCollectionOnCopies(cardId){
+		return this.favoriteCollection.findIndex(element => element.imdbID === cardId.imdbID)
+	}
+
 }
 
 function addEventOnSwiper() {
@@ -61,7 +71,7 @@ function removeEventOnSwiper() {
 	mySwiper.off('reachEnd');
 	mySwiper.removeAllSlides();
 	mySwiper.update();
-	cardContainer.classList.remove('show');
+	cardContainer.classList.remove('show','films-collection');
 }
 
 const collection = new Collection();
@@ -74,17 +84,21 @@ cardContainer.addEventListener('click', (event) => {
 		const cardId = {
 			imdbID: cardHref.split('/').splice(4, 1).join()
 		}
-		if (!collection.favoriteCollection.find(element => element.imdbID === cardId.imdbID)) {
-			userCollectionCount.innerText = 1 + Number(userCollectionCount.innerText)
+		const cardIndex = collection.checkUserCollectionOnCopies(cardId)
+		if (cardIndex === -1) {
+			userCollectionCount.innerText = Number(userCollectionCount.innerText) + 1;
 			collection.favoriteCollection.push(cardId)
+		} else if(cardContainer.classList.contains('films-collection')){
+			userCollectionCount.innerText = Number(userCollectionCount.innerText) - 1;
+			collection.favoriteCollection.splice(cardIndex,1);
+			collection.updateUserCollection()
 		}
 	}
 })
 
 userCollection.addEventListener('click', () => {
 	result.innerHTML = "Press on <span>heart</span> to add in your collection"
-	removeEventOnSwiper()
-	collection.drawCollection(collection.favoriteCollection)
+	collection.updateUserCollection()
 })
 
 export {

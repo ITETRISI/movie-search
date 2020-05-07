@@ -127,6 +127,10 @@ main {
 	cursor: pointer;
 }
 
+.films-collection .card__wrapper-like {
+	background-image: url('../image/shapes-and-symbols.svg');
+}
+
 .card__header {
 	position: absolute;
 	top: -40px;
