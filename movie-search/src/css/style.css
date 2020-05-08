@@ -156,7 +156,6 @@ main {
 	margin-left: 5px;
 }
 
-
 .card__body {
 	position: absolute;
 	display: flex;
@@ -297,6 +296,10 @@ main {
 	transform: translateY(210px);
 }
 
+.swiper-button-next::after {
+	color: #FC466B;
+}
+
 .keyboard div {
 	display: flex;
 	align-items: center;
@@ -358,3 +361,13 @@ main {
 #Space {
 	width: 280px;
 } 
+
+@media (max-width: 768px) {
+	.swiper-button-prev,.swiper-button-next{
+		display: none !important;
+	}
+
+	.keyboardShowBtn {
+		display: none;
+	}
+}

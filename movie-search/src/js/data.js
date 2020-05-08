@@ -11,6 +11,7 @@ const mySwiper = new Swiper ('.swiper-container', {
 	speed: 1000,
 	direction: 'horizontal',
 	slidesPerView:1,
+	centerInsufficientSlides: true,
 	navigation: {
 		nextEl: '.swiper-button-next',
 		prevEl: '.swiper-button-prev',
