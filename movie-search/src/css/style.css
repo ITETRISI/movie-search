@@ -254,7 +254,7 @@ main {
   100% { transform: rotate(360deg); }
 }
 
-.result {
+ .result {
 	height: 10px;
 	color: #fff;
 	font-family: 'Open Sans', sans-serif;
@@ -289,11 +289,11 @@ main {
 	background-image: url('../image/keyboard-active.svg');
 }
 
-.swiper-container{
+.swiper{
 	transition: .5s;
 }
 
-.swiper-container.active {
+.swiper.active {
 	transform: translateY(210px);
 }
 
@@ -357,4 +357,4 @@ main {
 
 #Space {
 	width: 280px;
-}
+} 

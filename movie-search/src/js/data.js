@@ -1,5 +1,5 @@
 const cardContainer = document.querySelector('.swiper-wrapper')
-const container = document.querySelector('.swiper-container')
+const container = document.querySelector('.swiper')
 const result = document.querySelector('.result')
 const input = document.querySelector('.input');
 const searchBtn = document.querySelector('.search');
@@ -10,17 +10,14 @@ const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 const mySwiper = new Swiper ('.swiper-container', {
 	speed: 1000,
 	direction: 'horizontal',
-	slidesPerGroup:1,
-	loop: true,
-	slidesPerView: 'auto',
-	
+	slidesPerView:1,
 	navigation: {
 		nextEl: '.swiper-button-next',
 		prevEl: '.swiper-button-prev',
 	},
 
 	breakpoints: {
-		300:{
+		425:{
 			slidesPerView:1,
 		},
     768: {
