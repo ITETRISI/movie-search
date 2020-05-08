@@ -160,6 +160,7 @@ window.addEventListener('load', () => {
 		keyboard.upShift(event.target.id);
 		document.querySelector(`#${event.target.id}`).classList.remove('active');
 		keyboard.pressCapsLock(event.target.id);
+		input.focus()
 	});
 });
 
