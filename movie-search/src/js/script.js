@@ -1,4 +1,4 @@
-import './swiper'
-import './card'
-import './search'
-import './keyboard'
+import './collection';
+import './card';
+import './search';
+import './keyboard';

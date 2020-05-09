@@ -1,4 +1,4 @@
-import keyboard from './keyboard.js';
+import keyboard from './keyboard';
 
 class Language {
 	checkLanguage() {
@@ -21,6 +21,6 @@ class Language {
 	}
 }
 
-const language = new Language()
+const language = new Language();
 
 export default language;

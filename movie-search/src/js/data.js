@@ -1,16 +1,16 @@
-const cardContainer = document.querySelector('.swiper-wrapper')
-const container = document.querySelector('.swiper')
-const result = document.querySelector('.result')
+const cardContainer = document.querySelector('.swiper-wrapper');
+const container = document.querySelector('.swiper');
+const result = document.querySelector('.result');
 const input = document.querySelector('.input');
 const searchBtn = document.querySelector('.search');
 const cancelBtn = document.querySelector('.cancel');
 const loader = document.querySelector('.loader');
-const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-const mySwiper = new Swiper ('.swiper-container', {
+const mySwiper = new Swiper('.swiper-container', {
 	speed: 1000,
 	direction: 'horizontal',
-	slidesPerView:1,
+	slidesPerView: 1,
 	centerInsufficientSlides: true,
 	navigation: {
 		nextEl: '.swiper-button-next',
@@ -18,20 +18,20 @@ const mySwiper = new Swiper ('.swiper-container', {
 	},
 
 	breakpoints: {
-		425:{
-			slidesPerView:1,
+		425: {
+			slidesPerView: 1,
 		},
-    768: {
-      slidesPerView: 2,
-    },
-    1024: {
-      slidesPerView: 3,
-    },
-    1300: {
-			slidesPerView: 4,				
-    }
-	}
-})
+		768: {
+			slidesPerView: 2,
+		},
+		1024: {
+			slidesPerView: 3,
+		},
+		1300: {
+			slidesPerView: 4,
+		},
+	},
+});
 
 const arrayOfKeys = [
 	[
@@ -104,10 +104,10 @@ const arrayOfKeys = [
 	],
 ];
 
-const keyboardShowBtn = document.querySelector('.keyboardShowBtn')
+const keyboardShowBtn = document.querySelector('.keyboardShowBtn');
 const keyboard = document.querySelector('.keyboard');
-const userCollection = document.querySelector('.user__collection')
-const userCollectionCount = document.querySelector('.user__collection-count')
+const userCollection = document.querySelector('.user__collection');
+const userCollectionCount = document.querySelector('.user__collection-count');
 
 export {
 	container,
@@ -124,4 +124,4 @@ export {
 	keyboard,
 	userCollection,
 	userCollectionCount,
-}
+};

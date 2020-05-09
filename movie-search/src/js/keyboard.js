@@ -3,7 +3,9 @@ import {
 	input,
 } from './data';
 import language from './language';
-import { search } from './search';
+import {
+	search,
+} from './search';
 
 class Keyboard {
 	constructor() {
@@ -22,65 +24,65 @@ class Keyboard {
 	rewriteKey() {
 		for (let i = 0; i < arrayOfKeys.length; i++) {
 			for (let j = 0; j < arrayOfKeys[i].length; j++) {
-				if (this.pressCaps && i === 0 && !this.pressShift)
+				if (this.pressCaps && i === 0 && !this.pressShift) {
 					document.querySelector(`#${arrayOfKeys[i][j].id}`).innerText = `${arrayOfKeys[i][j].value[i]}`;
-				else if (this.pressCaps && i === 0 && this.pressShift)
-					document.querySelector(`#${arrayOfKeys[i][j].id}`).innerText = `${arrayOfKeys[i][j].value[language.checkLanguage()+1]}`;
-				else
+				} else if (this.pressCaps && i === 0 && this.pressShift) {
+					document.querySelector(`#${arrayOfKeys[i][j].id}`).innerText = `${arrayOfKeys[i][j].value[language.checkLanguage() + 1]}`;
+				} else {
 					document.querySelector(`#${arrayOfKeys[i][j].id}`).innerText = `${arrayOfKeys[i][j].value[language.checkLanguage()]}`;
+				}
 			}
 		}
 	}
 
 	pressKey(keyCode) {
 		switch (keyCode) {
-			case 'ControlLeft':
-				language.changeLanguage(keyCode);
-				break;
-			case 'ControlRight':
-				language.changeLanguage(keyCode);
-				break;
-			case 'ShiftLeft':
-				break;
-			case 'ShiftRight':
-				break;
-			case 'CapsLock':
-				break;
-			case 'AltLeft':
-				break;
-			case 'AltRight':
-				break;
-			case 'MetaLeft':
-				break;
-			case 'ArrowLeft':
-				input.selectionStart = --input.selectionEnd;
-				break;
-			case 'ArrowRight':
-				input.selectionEnd = ++input.selectionStart;
-				break;
-			case 'Space':
-				input.setRangeText(' ', input.selectionStart, input.selectionEnd, 'end');
-				break;
-			case 'Tab':
-				input.setRangeText('    ', input.selectionStart, input.selectionEnd, 'end');
-				break;
-			case 'Enter':
-				search.startSearch();
-				break;
-			case 'Backspace':
-				if (input.selectionStart !== 0) input.setRangeText('', input.selectionStart - 1, input.selectionStart, 'end');
-				break;
-			default:
-				try {
-					let key = document.querySelector(`#${keyCode}`).innerText
-					input.setRangeText(key, input.selectionStart, input.selectionEnd, 'end');
-					document.querySelector(`#${keyCode}`).classList.add('active');
-				} catch (error) {}
+		case 'ControlLeft':
+			language.changeLanguage(keyCode);
+			break;
+		case 'ControlRight':
+			language.changeLanguage(keyCode);
+			break;
+		case 'ShiftLeft':
+			break;
+		case 'ShiftRight':
+			break;
+		case 'CapsLock':
+			break;
+		case 'AltLeft':
+			break;
+		case 'AltRight':
+			break;
+		case 'MetaLeft':
+			break;
+		case 'ArrowLeft':
+			input.selectionStart = --input.selectionEnd;
+			break;
+		case 'ArrowRight':
+			input.selectionEnd = ++input.selectionStart;
+			break;
+		case 'Space':
+			input.setRangeText(' ', input.selectionStart, input.selectionEnd, 'end');
+			break;
+		case 'Tab':
+			input.setRangeText('    ', input.selectionStart, input.selectionEnd, 'end');
+			break;
+		case 'Enter':
+			search.startSearch();
+			break;
+		case 'Backspace':
+			if (input.selectionStart !== 0) input.setRangeText('', input.selectionStart - 1, input.selectionStart, 'end');
+			break;
+		default: {
+			const key = document.querySelector(`#${keyCode}`).innerText;
+			input.setRangeText(key, input.selectionStart, input.selectionEnd, 'end');
+			document.querySelector(`#${keyCode}`).classList.add('active');
+		}
 		}
 	}
 
-	isShift (key) {
-	 return key === 'ShiftRight' || key === 'ShiftLeft'
+	isShift(key) {
+		return key === 'ShiftRight' || key === 'ShiftLeft';
 	}
 
 	downShift(keyCode) {
@@ -131,24 +133,25 @@ document.querySelector('.keyboard').innerHTML += `
   <div id="keyboard_row-4"></div>`;
 
 const keyboard = new Keyboard();
-
 keyboard.drawKeyboard();
 
 window.addEventListener('load', () => {
 	document.addEventListener('keydown', (event) => {
-		try{
 		keyboard.downShift(event.code);
-		document.querySelector(`#${event.code}`).classList.add('active');
-		} catch(error){}
+		const key = document.querySelector(`#${event.code}`);
+		if (key) {
+			key.classList.add('active');
+		}
 	});
 
 	document.addEventListener('keyup', (event) => {
-		try {
-			language.changeLanguage(event.code);
-			keyboard.upShift(event.code);
-			document.querySelector(`#${event.code}`).classList.remove('active');
-			keyboard.pressCapsLock(event.code);
-		} catch (error) {}
+		language.changeLanguage(event.code);
+		keyboard.upShift(event.code);
+		keyboard.pressCapsLock(event.code);
+		const key = document.querySelector(`#${event.code}`);
+		if (key) {
+			key.classList.remove('active');
+		}
 	});
 
 	document.querySelector('.keyboard').addEventListener('mousedown', (event) => {
@@ -160,8 +163,8 @@ window.addEventListener('load', () => {
 		keyboard.upShift(event.target.id);
 		document.querySelector(`#${event.target.id}`).classList.remove('active');
 		keyboard.pressCapsLock(event.target.id);
-		input.focus()
+		input.focus();
 	});
 });
 
-export default keyboard
+export default keyboard;
