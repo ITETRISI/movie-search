@@ -32,8 +32,10 @@ class Collection {
 				this.searchWord = keyWord;
 			}
 			this.drawCollection(data.Search)
+		} else if(data.Error === 'Movie not found!'){
+			result.innerHTML = `No results for <span>${keyWord}</span>`
 		} else {
-			result.innerHTML = data.Error
+			result.innerHTML = data.Error;
 		}
 	}
 

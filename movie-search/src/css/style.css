@@ -362,6 +362,28 @@ main {
 	width: 280px;
 } 
 
+footer {
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	bottom: 0;
+	height: 60px;
+	width: 100%;
+	background-color: #232d3a;
+	color: #fff;
+	font-family: 'Open Sans', sans-serif;
+}
+
+footer a {
+	color: #fff;
+	transition: .5s;
+}
+
+footer a:hover {
+	color: #fb5352;
+}
+
 @media (max-width: 768px) {
 	.swiper-button-prev,.swiper-button-next{
 		display: none !important;
