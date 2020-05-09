@@ -78,6 +78,12 @@ const collection = new Collection();
 collection.getCollection();
 addEventOnSwiper();
 
+if(sessionStorage.getItem('userCollection')){
+	const savedUserCollection = JSON.parse(sessionStorage.getItem('userCollection'));
+	collection.favoriteCollection = savedUserCollection;
+	userCollectionCount.innerText = savedUserCollection.length
+}
+
 cardContainer.addEventListener('click', (event) => {
 	if (event.target.classList.contains('card__wrapper-like')) {
 		const cardHref = event.target.nextElementSibling.querySelector('a').href;
@@ -93,6 +99,7 @@ cardContainer.addEventListener('click', (event) => {
 			collection.favoriteCollection.splice(cardIndex,1);
 			collection.updateUserCollection()
 		}
+		sessionStorage.setItem('userCollection',JSON.stringify(collection.favoriteCollection))
 	}
 })
 
