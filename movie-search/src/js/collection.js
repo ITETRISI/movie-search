@@ -10,7 +10,7 @@ import { addEventOnSwiper, removeEventOnSwiper } from './swiper';
 class Collection {
 	constructor() {
 		this.page = 1;
-		this.searchWord = 'star';
+		this.searchWord = '';
 		this.favoriteCollection = [];
 	}
 
@@ -25,13 +25,13 @@ class Collection {
 		}
 	}
 
-	checkRequestOnErrors(data, keyWord) {
+	async checkRequestOnErrors(data, keyWord) {
 		if (!data.Error) {
 			if (keyWord !== this.searchWord) {
 				removeEventOnSwiper();
 				this.searchWord = keyWord;
 			}
-			this.drawCollection(data.Search);
+		await	this.drawCollection(data.Search);
 		} else if (data.Error === 'Movie not found!') {
 			result.innerHTML = `No results for <span>${keyWord}</span>`;
 		} else {
@@ -63,8 +63,6 @@ class Collection {
 }
 
 const collection = new Collection();
-collection.getCollection();
-addEventOnSwiper();
 
 if (sessionStorage.getItem('userCollection')) {
 	const savedUserCollection = JSON.parse(sessionStorage.getItem('userCollection'));

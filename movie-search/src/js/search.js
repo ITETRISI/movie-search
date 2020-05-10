@@ -29,7 +29,7 @@ function showKeyboard() {
 
 class Search {
 	constructor() {
-		this.newWord = '';
+		this.newWord = 'star';
 	}
 
 	async startSearch() {
@@ -63,7 +63,7 @@ class Search {
 }
 
 const search = new Search();
-
+search.waitingForLoading();
 document.addEventListener('keyup', (event) => {
 	if (event.code === 'Enter') {
 		search.startSearch();
