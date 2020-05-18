@@ -1,0 +1,43 @@
+{
+	"name": "english-for-kids",
+	"version": "1.0.0",
+	"description": "english-for-kids",
+	"main": "index.js",
+	"scripts": {
+		"dev": "webpack-dev-server --open --mode development",
+		"build": "webpack --mode production",
+		"lint": "eslint ./src/js/**"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/ITETRISI/english-for-kids.git"
+	},
+	"author": "Daniil",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/ITETRISI/english-for-kids/issues"
+	},
+	"homepage": "https://github.com/ITETRISI/english-for-kids#readme",
+	"dependencies": {
+		"@babel/polyfill": "^7.7.0",
+		"editorconfig": "^0.15.3"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.7.4",
+		"@babel/plugin-proposal-class-properties": "^7.7.4",
+		"@babel/plugin-transform-regenerator": "^7.7.5",
+		"@babel/preset-env": "^7.7.4",
+		"babel-eslint": "^10.0.3",
+		"babel-loader": "^8.0.6",
+		"css-loader": "^3.2.1",
+		"eslint": "^6.7.2",
+		"eslint-config-airbnb-base": "^14.0.0",
+		"eslint-plugin-import": "^2.18.2",
+		"file-loader": "^5.0.2",
+		"style-loader": "^1.0.1",
+		"url-loader": "^3.0.0",
+		"webpack": "^4.41.2",
+		"webpack-cli": "^3.3.10",
+		"webpack-dev-server": "^3.9.0"
+	}
+}
