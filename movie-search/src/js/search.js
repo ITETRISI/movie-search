@@ -11,6 +11,7 @@ import {
 	result,
 	keyboardShowBtn,
 	keyboard,
+	yandexApi,
 } from './data';
 
 function isCyrillic(word) {
@@ -36,7 +37,7 @@ class Search {
 		result.innerHTML = '';
 		if (input.value) {
 			if (isCyrillic(input.value)) {
-				const url = `https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20200424T194324Z.1fc3d382b16099a7.576c0a6f5f134312f2eaec19bb60b5a666de1916&text=${input.value}&lang=ru-en`;
+				const url = `${yandexApi}${input.value}&lang=ru-en`;
 				const response = await fetch(url);
 				const data = await response.json();
 				this.newWord = data.text[0];

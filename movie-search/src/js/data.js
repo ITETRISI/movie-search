@@ -108,8 +108,11 @@ const keyboardShowBtn = document.querySelector('.keyboardShowBtn');
 const keyboard = document.querySelector('.keyboard');
 const userCollection = document.querySelector('.user__collection');
 const userCollectionCount = document.querySelector('.user__collection-count');
-
+const omdbApi = 'https://www.omdbapi.com/';
+const yandexApi = 'https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20200424T194324Z.1fc3d382b16099a7.576c0a6f5f134312f2eaec19bb60b5a666de1916&text=';
 export {
+	yandexApi,
+	omdbApi,
 	container,
 	cardContainer,
 	result,

@@ -4,8 +4,9 @@ import {
 	result,
 	userCollection,
 	userCollectionCount,
+	omdbApi,
 } from './data';
-import { addEventOnSwiper, removeEventOnSwiper } from './swiper';
+import { removeEventOnSwiper } from './swiper';
 
 class Collection {
 	constructor() {
@@ -16,7 +17,7 @@ class Collection {
 
 	async getCollection(keyWord = this.searchWord) {
 		try {
-			const url = `https://www.omdbapi.com/?s=${keyWord}&page=${this.page}&apikey=e795be05`;
+			const url = `${omdbApi}?s=${keyWord}&page=${this.page}&apikey=e795be05`;
 			const response = await fetch(url);
 			const data = await response.json();
 			await this.checkRequestOnErrors(data, keyWord);
@@ -31,7 +32,7 @@ class Collection {
 				removeEventOnSwiper();
 				this.searchWord = keyWord;
 			}
-		await	this.drawCollection(data.Search);
+			await	this.drawCollection(data.Search);
 		} else if (data.Error === 'Movie not found!') {
 			result.innerHTML = `No results for <span>${keyWord}</span>`;
 		} else {

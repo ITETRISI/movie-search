@@ -1,6 +1,7 @@
 import {
 	cardContainer,
 	mySwiper,
+	omdbApi,
 } from './data';
 
 export default class Card {
@@ -15,7 +16,7 @@ export default class Card {
 	}
 
 	async getMoreInfoCard() {
-		const url = `https://www.omdbapi.com/?i=${this.id}&apikey=e795be05`;
+		const url = `${omdbApi}?i=${this.id}&apikey=e795be05`;
 		const response = await fetch(url);
 		const data = await response.json();
 		this.plot = data.Plot;
