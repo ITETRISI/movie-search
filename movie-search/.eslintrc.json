@@ -16,7 +16,7 @@
 		"sourceType": "module"
 	},
 	"rules": {
-		"indent": [2, "tab"],
+		"indent": ["error", 2],
 		"no-tabs": 0,
 		"no-console": 0,
 		"no-alert": 0,

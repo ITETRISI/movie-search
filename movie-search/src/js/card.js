@@ -1,35 +1,35 @@
 import {
-	cardContainer,
-	mySwiper,
-	omdbApi,
+  cardContainer,
+  mySwiper,
+  omdbApi,
 } from './data';
 
 export default class Card {
-	constructor(options) {
-		this.id = options.imdbID;
-		this.poster = '';
-		this.title = '';
-		this.plot = '';
-		this.released = '';
-		this.director = '';
-		this.rating = '';
-	}
+  constructor(options) {
+    this.id = options.imdbID;
+    this.poster = '';
+    this.title = '';
+    this.plot = '';
+    this.released = '';
+    this.director = '';
+    this.rating = '';
+  }
 
-	async getMoreInfoCard() {
-		const url = `${omdbApi}?i=${this.id}&apikey=e795be05`;
-		const response = await fetch(url);
-		const data = await response.json();
-		this.plot = data.Plot;
-		this.released = data.Released;
-		this.director = data.Director;
-		this.rating = data.imdbRating;
-		this.title = data.Title;
-		this.poster = data.Poster;
-		this.createCard();
-	}
+  async getMoreInfoCard() {
+    const url = `${omdbApi}?i=${this.id}&apikey=e795be05`;
+    const response = await fetch(url);
+    const data = await response.json();
+    this.plot = data.Plot;
+    this.released = data.Released;
+    this.director = data.Director;
+    this.rating = data.imdbRating;
+    this.title = data.Title;
+    this.poster = data.Poster;
+    this.createCard();
+  }
 
-	createCard() {
-		cardContainer.innerHTML += `
+  createCard() {
+    cardContainer.innerHTML += `
 		<div class="swiper-slide">
 			<div class="card__wrapper" style="background-image: url('${this.poster}'),url('../src/image/no-poster.jpg');">
 			<div class="card__header">
@@ -48,6 +48,6 @@ export default class Card {
 			</div>
 		</div>
 		`;
-		mySwiper.update();
-	}
+    mySwiper.update();
+  }
 }
