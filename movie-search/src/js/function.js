@@ -1,5 +1,5 @@
 export function isCyrillic(word) {
-	return /[а-яё]/i.test(word);
+	return /[а-я]/i.test(word);
 }
 
 export function isShift(key) {
