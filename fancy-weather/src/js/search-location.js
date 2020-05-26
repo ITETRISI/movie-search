@@ -1,7 +1,46 @@
 import getWeatherData from './weather';
 import time from './current-time';
 import translate from './translate';
+import {
+	ipInfo,
+	openCageData,
+} from './data'
 
+class Location {
+
+	async getUserLocation() {
+		const response = await fetch(ipInfo);
+		const data = await response.json();
+		this.searchLocation(data.city, sessionStorage.getItem('language'));
+	};
+
+	async searchLocation(place, language) {
+		if (language === null) {
+			language = 'en';
+		}
+		const url = `${openCageData}q=${place}&key=cfcbe4a7aee74e3db98050801ae248ea&language=${language}&pretty=1`;
+		const response = await fetch(url);
+		const data = await response.json();
+		const {
+			lat,
+			lng,
+		} = data.results[0].geometry;
+
+		const location = data.results[0].formatted;
+		getWeatherData(`${lat},${lng}`, language);
+		this.writeNameOfLocation(location.split(',')[0].split(' ')[0]);
+		time.clickHandler(`lat=${lat}&lng=${lng}`);
+		createMap(lat, lng, language);
+		sessionStorage.setItem('location', place);
+	};
+
+	writeNameOfLocation(place) {
+		document.querySelector('.weather-today_place').innerHTML = place;
+	}
+}
+
+const location = new Location();
+/////////////////////////////////////////////// Map
 function doubleToDegree(value) {
 	const degree = parseInt(value, 10);
 	const minute = parseInt(Math.abs((value % 1) * 60), 10);
@@ -18,7 +57,7 @@ async function createMap(lng, lat, language) {
 		center: [lat, lng],
 		zoom: 4,
 	});
-///////////////////
+	///////////////////
 	if (language === 'be') {
 		language = 'ru';
 	}
@@ -42,41 +81,9 @@ async function createMap(lng, lat, language) {
 		]);
 		new mapboxgl.Marker().setLngLat([lat, lng]).addTo(map)
 	});
-/////////////////////////
+	/////////////////////////
 }
-
-function createPlace(place) {
-	document.querySelector('.weather-today_place').innerHTML = place;
-}
-
-const searchLocation = async (place, language) => {
-	if (language === null) {
-		language = 'en';
-	}
-	const url = `https://api.opencagedata.com/geocode/v1/json?q=${place}&key=cfcbe4a7aee74e3db98050801ae248ea&language=${language}&pretty=1`;
-	const response = await fetch(url);
-	const data = await response.json();
-	const {
-		lat,
-		lng,
-	} = data.results[0].geometry;
-
-	const location = data.results[0].formatted;
-	sessionStorage.setItem('location', place);
-	getWeatherData(`${lat},${lng}`, language);
-	createPlace(location.split(',')[0].split(' ')[0]);
-	time.clickHandler(`lat=${lat}&lng=${lng}`);
-	createMap(lat, lng, language);
-};
-
-const getUserLocation = async () => {
-	const url = 'https://ipinfo.io/json?token=30ff4b186d0944';
-	const response = await fetch(url);
-	const data = await response.json();
-	searchLocation(data.city, sessionStorage.getItem('language'));
-};
 
 export {
-	getUserLocation,
-	searchLocation,
+	location
 };

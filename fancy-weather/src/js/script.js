@@ -1,9 +1,9 @@
-import { getUserLocation, searchLocation } from './search-location';
+import {location} from './search-location';
 import getImage from './image';
 import { transformTemperature } from './temperature';
 import inputByMicrophone from './microphone';
 
-getUserLocation();
+location.getUserLocation();
 
 document.querySelector('body').innerHTML = `
 	<div class="wrapper">
@@ -57,14 +57,14 @@ document.querySelector('#select').value = sessionStorage.getItem('language') ? s
 
 document.querySelector('#select').onchange = () => {
 	const language = document.querySelector('#select').value;
-	searchLocation(sessionStorage.getItem('location'), language);
+	location.searchLocation(sessionStorage.getItem('location'), language);
 	sessionStorage.setItem('language', language);
 };
 
 document.querySelector('#search').addEventListener('click', () => {
 	const place = document.querySelector('#input');
 	const language = document.querySelector('#select').value;
-	searchLocation(place.value, language);
+	location.searchLocation(place.value, language);
 });
 
 document.querySelector('.image').addEventListener('click', () => {
