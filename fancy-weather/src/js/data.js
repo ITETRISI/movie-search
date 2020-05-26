@@ -4,10 +4,13 @@ const openCageData = 'https://api.opencagedata.com/geocode/v1/json?';
 const temperatureButton = document.querySelector('.temperature');
 const celsius = '°C';
 const fahrenheit = '°F';
+
+const mapBoxToken = 'pk.eyJ1IjoiaXRldHJpc2kiLCJhIjoiY2szbjF1OTduMTcwbTNvbzdia2ZvaDQxYiJ9.QZn9midKqzkTmnqsnEPDCw'
 export {
 	ipInfo,
 	openCageData,
 	temperatureButton,
 	celsius,
 	fahrenheit,
+	mapBoxToken,
 }
