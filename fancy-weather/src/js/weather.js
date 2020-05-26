@@ -48,6 +48,6 @@ export default async function getWeatherData(place, lang) {
 	createWeatherToday(icon, temperature);
 	createWeatherInfo(summary, apparentTemperature, windSpeed, humidity);
 	createWeatherWeek(data.daily.data.splice(1, 3), lang);
-	getImage(icon, summary);
+	//getImage(icon, summary);
 	checkValue();
 }

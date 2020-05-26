@@ -1,34 +1,38 @@
-export default class TimeService {
-	static place = ''
-
-	static currentInterval
-
-	static clickHandler = (place) => {
-		TimeService.generateRequest(place).then((data) => TimeService.parseData(data));
-		TimeService.changePlaceHandler(place);
+class TimeService {
+	constructor() {
+		this.place = '';
+		this.currentInterval = '';
 	}
 
-	static changePlaceHandler = (newPlace) => {
-		if (TimeService.place !== newPlace && newPlace) {
-			clearInterval(TimeService.currentInterval);
-			TimeService.place = newPlace;
+	clickHandler(place) {
+		this.generateRequest(place);
+		this.changePlaceHandler(place);
+	}
+
+	changePlaceHandler(newPlace) {
+		if (this.place !== newPlace && newPlace) {
+			clearInterval(this.currentInterval);
+			this.place = newPlace;
 			if (newPlace) {
-				TimeService.currentInterval = setInterval(() => {
-					TimeService.generateRequest(newPlace).then((data) => TimeService.parseData(data));
+				this.currentInterval = setInterval(() => {
+					this.generateRequest(newPlace);
 				}, 60000);
 			}
 		}
 	}
 
-	static generateRequest = async (place) => {
+	async generateRequest(place) {
 		const url = `http://api.timezonedb.com/v2.1/get-time-zone?key=JIJTUMOM9GC7&format=json&by=position&${place}`;
 		const response = await fetch(url);
 		const data = await response.json();
-		return data;
+		this.parseData(data)
 	}
 
-	static parseData = (data) => {
+	parseData(data) {
 		document.querySelector('.weather-today_data').innerHTML = `
-		<span class="data">${data.formatted.slice(0, -3)}</span>`;
+		<span class="data">${data.formatted}</span>`;
 	}
 }
+
+const time = new TimeService();
+export default time;

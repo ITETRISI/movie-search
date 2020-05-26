@@ -1,4 +1,3 @@
-import '@babel/polyfill';
 import { getUserLocation, searchLocation } from './search-location';
 import getImage from './image';
 import { transformTemperature } from './temperature';
@@ -46,7 +45,10 @@ document.querySelector('body').innerHTML = `
 			<div class="weather-week">  
 			</div>
 		</div>
-		<div class="map" id='map' style='width: 500px; height: 400px;'></div>
+		<div class="map-container">
+			<span class="coordinates"></span>
+			<div class="map" id='map' style='width: 500px; height: 400px;'></div>
+		</div>
 	</div> 
 	</div>
 `;

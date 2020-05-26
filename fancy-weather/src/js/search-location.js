@@ -1,5 +1,5 @@
 import getWeatherData from './weather';
-import TimeService from './current-time';
+import time from './current-time';
 import translate from './translate';
 
 function doubleToDegree(value) {
@@ -9,7 +9,8 @@ function doubleToDegree(value) {
 }
 
 async function createMap(lng, lat, language) {
-	document.querySelector('.map').innerHTML = `<span class="map-coordinates">${translate(language, 'longitude')}: ${doubleToDegree(lng)}, ${translate(language, 'latitude')}: ${doubleToDegree(lat)}</span>`;
+	document.querySelector('.coordinates').innerHTML = `${translate(language, 'longitude')}: ${doubleToDegree(lng)}, ${translate(language, 'latitude')}: ${doubleToDegree(lat)}`;
+
 	mapboxgl.accessToken = 'pk.eyJ1IjoiaXRldHJpc2kiLCJhIjoiY2szbjF1OTduMTcwbTNvbzdia2ZvaDQxYiJ9.QZn9midKqzkTmnqsnEPDCw';
 	const map = new mapboxgl.Map({
 		container: 'map',
@@ -17,7 +18,7 @@ async function createMap(lng, lat, language) {
 		center: [lat, lng],
 		zoom: 4,
 	});
-
+///////////////////
 	if (language === 'be') {
 		language = 'ru';
 	}
@@ -39,7 +40,9 @@ async function createMap(lng, lat, language) {
 				],
 			},
 		]);
+		new mapboxgl.Marker().setLngLat([lat, lng]).addTo(map)
 	});
+/////////////////////////
 }
 
 function createPlace(place) {
@@ -57,11 +60,12 @@ const searchLocation = async (place, language) => {
 		lat,
 		lng,
 	} = data.results[0].geometry;
+
 	const location = data.results[0].formatted;
 	sessionStorage.setItem('location', place);
 	getWeatherData(`${lat},${lng}`, language);
 	createPlace(location.split(',')[0].split(' ')[0]);
-	TimeService.clickHandler(`lat=${lat}&lng=${lng}`);
+	time.clickHandler(`lat=${lat}&lng=${lng}`);
 	createMap(lat, lng, language);
 };
 

@@ -144,5 +144,10 @@ margin: 10px 5px;
 	 font-family: Impact, fantasy;
  }
 
+ .mapboxgl-canvas{
+	 display: block;
+	 border-radius: 30px;
+ }
+
 
 
