@@ -1,31 +1,51 @@
-function transformTemperature() {
-	const temp = document.querySelectorAll('.day_week_temperature, .today_temperature, .sensation');
-	const button = document.querySelector('.temperature');
-	const celsius = '°C';
-	const fahrenheit = '°F';
-	if (button.value === celsius) {
-		temp.forEach((element) => {
-			const transformToFahrenheit = (((element.innerHTML.slice(0, -2) * 9) / 5) + 32);
-			element.innerHTML = `${transformToFahrenheit.toFixed(0)}°F`;
-		});
+import {
+	temperatureButton,
+	celsius,
+	fahrenheit,
+} from './data';
 
-		button.value = fahrenheit;
-		button.innerHTML = fahrenheit;
-	} else {
-		temp.forEach((element) => {
+class Temperature {
+	
+	constructor() {
+		this.temperatures = '';
+	}
+
+	transformTemperature() {
+		this.temperatures = document.querySelectorAll('.day_week_temperature, .today_temperature, .sensation');
+		if (temperatureButton.value === celsius) {
+			this.transformTemperatureIntoFahrenheit()
+		} else {
+			this.transformTemperatureIntoCelsius()
+		}
+		sessionStorage.setItem('temperature', temperatureButton.value);
+	}
+
+	transformTemperatureIntoCelsius() {
+		this.temperatures.forEach((element) => {
 			const transformToCelsius = (((element.innerHTML.slice(0, -2) - 32) * 5) / 9);
 			element.innerHTML = `${transformToCelsius.toFixed(0)}°C`;
 		});
-		button.value = celsius;
-		button.innerHTML = celsius;
+		temperatureButton.value = celsius;
+		temperatureButton.innerHTML = celsius;
 	}
-	sessionStorage.setItem('temperature', button.value);
+
+	transformTemperatureIntoFahrenheit(){
+		this.temperatures.forEach((element) => {
+			const transformToFahrenheit = (((element.innerHTML.slice(0, -2) * 9) / 5) + 32);
+			element.innerHTML = `${transformToFahrenheit.toFixed(0)}°F`;
+		});
+		temperatureButton.value = fahrenheit;
+		temperatureButton.innerHTML = fahrenheit;
+	}
+
+	checkTemperature() {
+		if (sessionStorage.getItem('temperature') !== '°C' && sessionStorage.getItem('temperature')) {
+			this.transformTemperature();
+		}
+	}
+
 }
 
-function checkValue() {
-	if (sessionStorage.getItem('temperature') !== '°C' && sessionStorage.getItem('temperature')) {
-		transformTemperature();
-	}
-}
+const temperature = new Temperature();
 
-export { transformTemperature, checkValue };
+export default temperature;

@@ -1,4 +1,4 @@
-import getWeatherData from './weather';
+import weather from './weather';
 import time from './current-time';
 import translate from './translate';
 import {
@@ -27,7 +27,7 @@ class Location {
 		} = data.results[0].geometry;
 
 		const location = data.results[0].formatted;
-		getWeatherData(`${lat},${lng}`, language);
+		weather.getWeatherData(`${lat},${lng}`, language);
 		this.writeNameOfLocation(location.split(',')[0].split(' ')[0]);
 		time.clickHandler(`lat=${lat}&lng=${lng}`);
 		createMap(lat, lng, language);
