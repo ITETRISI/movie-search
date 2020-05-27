@@ -1,6 +1,8 @@
 import translate from './translate';
+import location from './search-location';
 import {
-	mapBoxToken
+	mapBox,
+	mapMarker,
 } from './data';
 
 class Map {
@@ -10,26 +12,11 @@ class Map {
 		this.language = language;
 	}
 
-	async createMap() {
-		document.querySelector('.coordinates').innerHTML = `${translate(this.language, 'longitude')}: ${doubleToDegree(this.lng)}, ${translate(this.language, 'latitude')}: ${doubleToDegree(this.lat)}`;
-		mapboxgl.accessToken = mapBoxToken;
-		const map = new mapboxgl.Map({
-			container: 'map',
-			style: 'mapbox://styles/mapbox/streets-v11',
-			center: [this.lat, this.lng],
-			zoom: 4,
-		});
-		this.drawMap(map)
-	}
-
-	drawMap(map) {
-		if (this.language === 'be') {
-			this.language = 'ru';
-		}
-		map.on('load', () => {
-			map.setLayoutProperty('country-label', 'text-field', [
+	static addMapEvent() {
+		mapBox.on('load', () => {
+			mapBox.setLayoutProperty('country-label', 'text-field', [
 				'format',
-				['get', `name_${this.language}`],
+				['get', `name_en`],
 				{
 					'font-scale': 1.2,
 				},
@@ -44,8 +31,25 @@ class Map {
 					],
 				},
 			]);
-			new mapboxgl.Marker().setLngLat([this.lat, this.lng]).addTo(map)
+
+			mapBox.on('click', async function (e) {
+				const {lat,lng} = e.lngLat;
+				const response = await fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${lng},${lat}.json?types=country&access_token=pk.eyJ1IjoiaXRldHJpc2kiLCJhIjoiY2szbjF1OTduMTcwbTNvbzdia2ZvaDQxYiJ9.QZn9midKqzkTmnqsnEPDCw`);
+				const data = await response.json();
+				const place = data.features[0].place_name;
+				location.searchLocation(place,sessionStorage.getItem('language'));
+			});
 		});
+	}
+
+	newMapPosition() {
+		mapBox.flyTo({
+			center: [this.lng, this.lat]
+		});
+		mapMarker.setLngLat([this.lng, this.lat]).addTo(mapBox)
+		document.querySelector('.coordinates').innerHTML = `${translate(this.language, 'longitude')}:
+		${doubleToDegree(this.lng)}, ${translate(this.language, 'latitude')}: 
+		${doubleToDegree(this.lat)}`;
 	}
 }
 
@@ -54,5 +58,7 @@ function doubleToDegree(value) {
 	const minute = parseInt(Math.abs((value % 1) * 60), 10);
 	return `${degree}°${minute}'`;
 }
+
+Map.addMapEvent();
 
 export default Map;

@@ -1,7 +1,6 @@
 import weather from './weather';
 import time from './current-time';
 import Map from './map';
-
 import {
 	ipInfo,
 	openCageData,
@@ -26,13 +25,13 @@ class Location {
 			lat,
 			lng,
 		} = data.results[0].geometry;
-
 		const location = data.results[0].formatted;
 		weather.getWeatherData(`${lat},${lng}`, language);
-		this.writeNameOfLocation(location.split(',')[0].split(' ')[0]);
+		this.writeNameOfLocation(location.split(',')[0]);
 		time.clickHandler(`lat=${lat}&lng=${lng}`);
-		new Map(lat, lng, language).createMap();
+		sessionStorage.setItem('language', language);
 		sessionStorage.setItem('location', place);
+		new Map(lng,lat,language).newMapPosition()
 	};
 
 	writeNameOfLocation(place) {
@@ -42,6 +41,4 @@ class Location {
 
 const location = new Location();
 
-export {
-	location
-};
+export default location;

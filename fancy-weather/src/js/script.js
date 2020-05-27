@@ -1,7 +1,8 @@
-import {location} from './search-location';
+import location from './search-location';
 import getImage from './image';
 import Temperature from './temperature';
 import inputByMicrophone from './microphone';
+import {mapBox} from './data';
 
 location.getUserLocation();
 
