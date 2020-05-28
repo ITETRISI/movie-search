@@ -1,3 +1,5 @@
+import translate from './translate';
+
 class TimeService {
 	constructor() {
 		this.place = '';
@@ -29,10 +31,16 @@ class TimeService {
 	}
 
 	parseData(data) {
+		const language = sessionStorage.getItem('language')
+		const month = new Date(data.timestamp*1000).toGMTString().split(' ')[2];
+		const day = new Date(data.timestamp*1000).toGMTString().split(' ')[0].replace(',','');
+		const date = new Date(data.timestamp*1000).getUTCDate();
+		const time = new Date(data.timestamp*1000).toGMTString().split(' ')[4];
 		document.querySelector('.weather-today_data').innerHTML = `
-		<span class="data">${data.formatted}</span>`;
+		<span class="data">${translate(language, day)} ${date} ${translate(language, month)} ${time}</span>`;
 	}
 }
 
 const time = new TimeService();
+
 export default time;

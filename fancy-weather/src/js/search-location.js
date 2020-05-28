@@ -1,6 +1,6 @@
 import weather from './weather';
 import time from './current-time';
-import Map from './map';
+import map from './map';
 import {
 	ipInfo,
 	openCageData,
@@ -15,6 +15,7 @@ class Location {
 	};
 
 	async searchLocation(place, language) {
+		try{
 		if (language === null) {
 			language = 'en';
 		}
@@ -26,12 +27,16 @@ class Location {
 			lng,
 		} = data.results[0].geometry;
 		const location = data.results[0].formatted;
-		weather.getWeatherData(`${lat},${lng}`, language);
+
+		await weather.getWeatherData(`${lat},${lng}`, language);
 		this.writeNameOfLocation(location.split(',')[0]);
 		time.clickHandler(`lat=${lat}&lng=${lng}`);
+		map.newMapPosition(lng,lat,language)
 		sessionStorage.setItem('language', language);
 		sessionStorage.setItem('location', place);
-		new Map(lng,lat,language).newMapPosition()
+	 } catch(error){
+		console.log('incorrect input')
+	 };
 	};
 
 	writeNameOfLocation(place) {

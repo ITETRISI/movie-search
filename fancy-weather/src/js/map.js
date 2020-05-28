@@ -3,6 +3,7 @@ import location from './search-location';
 import {
 	mapBox,
 	mapMarker,
+	mapBoxToken,
 } from './data';
 
 class Map {
@@ -12,7 +13,7 @@ class Map {
 		this.language = language;
 	}
 
-	static addMapEvent() {
+	addMapEvent() {
 		mapBox.on('load', () => {
 			mapBox.setLayoutProperty('country-label', 'text-field', [
 				'format',
@@ -33,23 +34,27 @@ class Map {
 			]);
 
 			mapBox.on('click', async function (e) {
+				try{
 				const {lat,lng} = e.lngLat;
-				const response = await fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${lng},${lat}.json?types=country&access_token=pk.eyJ1IjoiaXRldHJpc2kiLCJhIjoiY2szbjF1OTduMTcwbTNvbzdia2ZvaDQxYiJ9.QZn9midKqzkTmnqsnEPDCw`);
+				const response = await fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${lng},${lat}.json?types=country&access_token=${mapBoxToken}`);
 				const data = await response.json();
 				const place = data.features[0].place_name;
 				location.searchLocation(place,sessionStorage.getItem('language'));
+				} catch(error){
+					console.log('please try to click in another place')
+				}
 			});
 		});
 	}
 
-	newMapPosition() {
+	newMapPosition(lng,lat,language) {
 		mapBox.flyTo({
-			center: [this.lng, this.lat]
+			center: [lng, lat]
 		});
-		mapMarker.setLngLat([this.lng, this.lat]).addTo(mapBox)
-		document.querySelector('.coordinates').innerHTML = `${translate(this.language, 'longitude')}:
-		${doubleToDegree(this.lng)}, ${translate(this.language, 'latitude')}: 
-		${doubleToDegree(this.lat)}`;
+		mapMarker.setLngLat([lng, lat]).addTo(mapBox)
+		document.querySelector('.coordinates').innerHTML = `${translate(language, 'longitude')}:
+		${doubleToDegree(lng)}, ${translate(language, 'latitude')}: 
+		${doubleToDegree(lat)}`;
 	}
 }
 
@@ -59,6 +64,6 @@ function doubleToDegree(value) {
 	return `${degree}°${minute}'`;
 }
 
-Map.addMapEvent();
-
-export default Map;
+const map = new Map();
+map.addMapEvent()
+export default map;
