@@ -27,7 +27,7 @@ class Weather {
   }
 
   createWeatherToday(icon, temp) {
-    document.querySelector('.today_icon').src = `image/${icon}.svg`;
+    document.querySelector('.today_icon').src = `./src/image/${icon}.svg`;
     document.querySelector('.today_temperature').innerText = `${Math.round(temp)}°C`;
   }
 
@@ -48,7 +48,7 @@ class Weather {
 			<div class="day_week">
 					<span class="day">${translate(lang, time.getDay())}</span>
 					<div class="day_week_info">
-						<img class="day_week_icon" src="image/${day.icon}.svg" width="80" height="80" alt="icon weather">
+						<img class="day_week_icon" src="./src/image/${day.icon}.svg" width="80" height="80" alt="icon weather">
 						<span class="day_week_temperature">${Math.round(day.apparentTemperatureHigh)}°C</span>
 					</div>
 				</div>`;

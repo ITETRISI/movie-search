@@ -20,7 +20,7 @@ const errorBlock = document.querySelector('.errors');
 const loader = document.querySelector('.loader');
 const weatherBlock = document.querySelector('.weather');
 const microphone = document.querySelector('.microphone');
-
+const timeZone = 'https://api.timezonedb.com/v2.1/get-time-zone?key=JIJTUMOM9GC7&format=json&by=position'
 export {
   ipInfo,
   openCageData,
@@ -34,4 +34,5 @@ export {
   loader,
 	weatherBlock,
 	microphone,
+	timeZone
 };

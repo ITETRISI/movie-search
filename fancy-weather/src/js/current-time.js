@@ -1,6 +1,7 @@
 import translate from './translate';
 import {
-  errorBlock,
+	errorBlock,
+	timeZone
 } from './data';
 
 class TimeService {
@@ -28,7 +29,7 @@ class TimeService {
 
   async generateRequest(place) {
     try {
-      const url = `http://api.timezonedb.com/v2.1/get-time-zone?key=JIJTUMOM9GC7&format=json&by=position&${place}`;
+			const url = `${timeZone}&${place}`;
       const response = await fetch(url);
       const data = await response.json();
       this.parseData(data);
