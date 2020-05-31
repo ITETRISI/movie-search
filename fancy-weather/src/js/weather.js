@@ -16,13 +16,16 @@ class Weather {
 			apparentTemperature,
 			windSpeed,
 			humidity,
+			time,
 		} = data.currently;
 		this.createWeatherToday(icon, temperature);
 		this.createWeatherInfo(summary, apparentTemperature, windSpeed, humidity);
 		this.createWeatherWeek(data.daily.data.splice(1, 3), lang);
 		Temperature.checkTemperature();
-		//getImage(icon, summary);
-		
+		console.log(data)
+		const month = new Date(time*1000).toGMTString().split(' ')[2];
+		const hour = new Date(time*1000).toGMTString().split(' ')[4].split(':')[0];
+		getImage(translate('en', month), hour,icon);
 	}
 
 	createWeatherToday(icon, temp) {
@@ -48,7 +51,7 @@ class Weather {
 					<span class="day">${translate(lang, time.getDay())}</span>
 					<div class="day_week_info">
 						<img class="day_week_icon" src="image/${day.icon}.svg" width="80" height="80" alt="icon weather">
-						<div class="day_week_temperature">${Math.round(day.apparentTemperatureHigh)}°C</div>
+						<span class="day_week_temperature">${Math.round(day.apparentTemperatureHigh)}°C</span>
 					</div>
 				</div>`;
 		});

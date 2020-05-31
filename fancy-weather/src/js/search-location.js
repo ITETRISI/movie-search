@@ -4,6 +4,7 @@ import map from './map';
 import {
 	ipInfo,
 	openCageData,
+	errorBlock,
 } from './data'
 
 class Location {
@@ -35,7 +36,7 @@ class Location {
 		sessionStorage.setItem('language', language);
 		sessionStorage.setItem('location', place);
 	 } catch(error){
-		console.log('incorrect input')
+		errorBlock.innerText = 'Incorrect input'
 	 };
 	};
 

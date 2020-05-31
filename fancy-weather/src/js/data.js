@@ -15,6 +15,8 @@ const mapBox = new mapboxgl.Map({
 });
 const mapMarker = new mapboxgl.Marker()
 
+const errorBlock = document.querySelector('.errors')
+
 export {
 	ipInfo,
 	openCageData,
@@ -24,4 +26,5 @@ export {
 	mapBoxToken,
 	mapBox,
 	mapMarker,
+	errorBlock,
 }

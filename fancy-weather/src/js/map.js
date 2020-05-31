@@ -4,6 +4,7 @@ import {
 	mapBox,
 	mapMarker,
 	mapBoxToken,
+	errorBlock
 } from './data';
 
 class Map {
@@ -41,7 +42,7 @@ class Map {
 				const place = data.features[0].place_name;
 				location.searchLocation(place,sessionStorage.getItem('language'));
 				} catch(error){
-					console.log('please try to click in another place')
+					errorBlock.innerText = 'Please, try to click in another place'
 				}
 			});
 		});
