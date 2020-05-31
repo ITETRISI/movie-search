@@ -15,9 +15,11 @@ const mapBox = new mapboxgl.Map({
 });
 const mapMarker = new mapboxgl.Marker();
 
+
 const errorBlock = document.querySelector('.errors');
 const loader = document.querySelector('.loader');
 const weatherBlock = document.querySelector('.weather');
+const microphone = document.querySelector('.microphone');
 
 export {
   ipInfo,
@@ -30,5 +32,6 @@ export {
   mapMarker,
   errorBlock,
   loader,
-  weatherBlock,
+	weatherBlock,
+	microphone,
 };

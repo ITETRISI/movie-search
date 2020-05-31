@@ -27,7 +27,8 @@ const vocabulary = {
     Wed: 'Wed',
     Thu: 'Thu',
     Fri: 'Fri',
-    Sut: 'Sut',
+		Sut: 'Sut',
+		info: 'Click on a country to get a weather forecast',
   },
   be: {
     0: 'Нядзеля',
@@ -57,7 +58,8 @@ const vocabulary = {
     Wed: 'Ср',
     Thu: 'Чц',
     Fri: 'Пт',
-    Sut: 'Сб',
+		Sut: 'Сб',
+		info: `Націсніце на краіну каб атрымаць прагноз надвор'я`
   },
   ru: {
     0: 'Воскресенье',
@@ -87,7 +89,8 @@ const vocabulary = {
     Wed: 'Ср',
     Thu: 'Чт',
     Fri: 'Пт',
-    Sut: 'Сб',
+		Sut: 'Сб',
+		info: 'Нажмите на страну чтобы получить прогноз погоды'
   },
 };
 

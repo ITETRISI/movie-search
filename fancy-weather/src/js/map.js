@@ -52,11 +52,11 @@ class Map {
     mapBox.flyTo({
       center: [lng, lat],
 		});
-		console.log(lat)
     mapMarker.setLngLat([lng, lat]).addTo(mapBox);
 		document.querySelector('.coordinates').innerHTML = `${translate(language, 'longitude')}:
 		${doubleToDegree(lng)}, ${translate(language, 'latitude')}: 
 		${doubleToDegree(lat)}`;
+		document.querySelector('.map-info').innerText = `${translate(language, 'info')}`;
   }
 }
 

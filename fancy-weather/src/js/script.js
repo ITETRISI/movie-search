@@ -32,4 +32,4 @@ document.querySelector('.image').addEventListener('click', () => {
 
 document.querySelector('.temperature').addEventListener('click', () => { Temperature.transformTemperature(); });
 
-document.querySelector('.microphon').addEventListener('click', () => { inputByMicrophone(sessionStorage.getItem('language')); });
+document.querySelector('.microphone').addEventListener('click', () => { inputByMicrophone(sessionStorage.getItem('language')); });

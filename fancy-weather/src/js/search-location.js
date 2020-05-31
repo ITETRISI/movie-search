@@ -38,6 +38,7 @@ class Location {
       sessionStorage.setItem('language', language);
       sessionStorage.setItem('location', place);
     } catch (error) {
+			console.log(error)
       errorBlock.innerText = 'Something went wrong';
     }
   }
