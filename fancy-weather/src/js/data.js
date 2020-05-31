@@ -8,23 +8,26 @@ const fahrenheit = '°F';
 const mapBoxToken = 'pk.eyJ1IjoiaXRldHJpc2kiLCJhIjoiY2szbjF1OTduMTcwbTNvbzdia2ZvaDQxYiJ9.QZn9midKqzkTmnqsnEPDCw';
 mapboxgl.accessToken = mapBoxToken;
 const mapBox = new mapboxgl.Map({
-	container: 'map',
-	style: 'mapbox://styles/mapbox/streets-v11',
-	center: [50, 20],
-	zoom: 4,
+  container: 'map',
+  style: 'mapbox://styles/mapbox/streets-v11',
+  center: [50, 20],
+  zoom: 4,
 });
-const mapMarker = new mapboxgl.Marker()
+const mapMarker = new mapboxgl.Marker();
 
-const errorBlock = document.querySelector('.errors')
-
+const errorBlock = document.querySelector('.errors');
+const loader = document.querySelector('.loader');
+const weatherBlock = document.querySelector('.weather');
 export {
-	ipInfo,
-	openCageData,
-	temperatureButton,
-	celsius,
-	fahrenheit,
-	mapBoxToken,
-	mapBox,
-	mapMarker,
-	errorBlock,
-}
+  ipInfo,
+  openCageData,
+  temperatureButton,
+  celsius,
+  fahrenheit,
+  mapBoxToken,
+  mapBox,
+  mapMarker,
+  errorBlock,
+  loader,
+  weatherBlock,
+};

@@ -21,8 +21,10 @@ body{
 	width: 100%;
 	height: 100%;
 	z-index: -10;
+	filter: blur(4px);
 	background-size: cover;
 	transition: opacity 1s ease-out;
+	background-image: url('../image/background-image.jpg');
 }
 
 .bg-loading {
@@ -56,6 +58,22 @@ body{
 .logo_text {
 	font-size: 2.3rem;
 	text-align: center;
+}
+
+.loader {
+	display: block;
+  border: 10px solid #496888;
+  border-radius: 50%;
+  border-top: 10px solid #fb5352;
+  min-width: 30px;
+  height: 30px;
+	animation: spin 2s linear infinite;
+	margin: 200px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 .weather {
@@ -138,9 +156,21 @@ body{
 	outline: none;
 }
 
+#select{
+	cursor: pointer;
+}
+
+.button {
+	cursor: pointer;
+	transition: .5s;
+}
+
+.button:hover {
+	opacity: 0.7;
+}
+
 .button:active {
 	transition: 0.5s;
-	transform: translateY(-10px);
 }
 
 .weather-week {
@@ -192,6 +222,10 @@ body{
 }
 
 @media (max-width: 500px){
+
+	.loader{
+		margin: 145px;
+	}
 
 	.header_conteiner{
 		flex-direction: column;
