@@ -37,9 +37,9 @@ class Location {
       map.newMapPosition(lng, lat, language);
       sessionStorage.setItem('language', language);
       sessionStorage.setItem('location', place);
-	 } catch (error) {
+    } catch (error) {
       errorBlock.innerText = 'Something went wrong';
-	 }
+    }
   }
 
   writeNameOfLocation(place) {

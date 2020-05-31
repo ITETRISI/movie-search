@@ -1,6 +1,6 @@
 import location from './search-location';
 
-export default function inputByMicrophone(language) {
+function inputByMicrophone(language) {
   if (language === null) {
     language = 'en';
   }
@@ -16,3 +16,5 @@ export default function inputByMicrophone(language) {
   };
   recognizer.start();
 }
+
+export default inputByMicrophone;
