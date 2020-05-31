@@ -51,9 +51,10 @@ class Map {
   newMapPosition(lng, lat, language) {
     mapBox.flyTo({
       center: [lng, lat],
-    });
+		});
+		console.log(lat)
     mapMarker.setLngLat([lng, lat]).addTo(mapBox);
-    document.querySelector('.coordinates').innerHTML = `${translate(language, 'longitude')}:
+		document.querySelector('.coordinates').innerHTML = `${translate(language, 'longitude')}:
 		${doubleToDegree(lng)}, ${translate(language, 'latitude')}: 
 		${doubleToDegree(lat)}`;
   }

@@ -18,6 +18,7 @@ const mapMarker = new mapboxgl.Marker();
 const errorBlock = document.querySelector('.errors');
 const loader = document.querySelector('.loader');
 const weatherBlock = document.querySelector('.weather');
+
 export {
   ipInfo,
   openCageData,
