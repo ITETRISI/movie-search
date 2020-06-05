@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./src/css/normalize.css">
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.css">
+	<link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
+	<link rel="stylesheet" href="./src/css/style.css">
+	<title>Movie-search</title>
+</head>
+
+<body>
+	<header>
+		<h1 class="logo">Movie<span>Search</span></h1>
+		<a href="#" class="user__collection">My films <span class="user__collection-count">0</span></a>
+	</header>
+	<main>
+		<div class="search__container">
+			<button class="cancel"></button>
+			<input class="input" type="text" autofocus placeholder="Search movie" autocomplete="off">
+			<button class="search"></button>
+			<div class="loader"></div>
+			<div class="keyboard"></div>
+			<button class="keyboardShowBtn"></button>
+		</div>
+		<div class="result"></div>
+		<div class="swiper">
+			<div class="swiper-container">
+				<div class="swiper-wrapper"></div>
+				<div class="swiper-button-prev"></div>
+				<div class="swiper-button-next"></div>
+			</div>
+		</div>
+	</main>
+	<footer>
+		<span>RS School 2020q1</span>
+		<a href="https://github.com/rolling-scopes-school/itetrisi-RS2020Q1 " target="_blank">My GitHub</a>
+	</footer>
+	<script src="https://unpkg.com/swiper/js/swiper.js"></script>
+	<script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
+	<script src="/dist/app.js"></script>
+</body>
+
+</html>
