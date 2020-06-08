@@ -18,7 +18,7 @@ class Location {
 
   async searchLocation(place, language) {
     try {
-      if (language === null) {
+      if (!language) {
         language = 'en';
       }
       const url = `${openCageData}q=${place}&key=cfcbe4a7aee74e3db98050801ae248ea&language=${language}&pretty=1`;
@@ -33,13 +33,12 @@ class Location {
       await weather.getWeatherData(`${lat},${lng}`, language);
       this.writeNameOfLocation(location.split(',')[0]);
       await time.clickHandler(`lat=${lat}&lng=${lng}`);
-      showLoader();
+      hideLoader();
       map.newMapPosition(lng, lat, language);
       sessionStorage.setItem('language', language);
       sessionStorage.setItem('location', place);
     } catch (error) {
-			console.log(error)
-      errorBlock.innerText = 'Something went wrong';
+      errorBlock.textContent = 'Something went wrong';
     }
   }
 
@@ -49,8 +48,13 @@ class Location {
 }
 
 function showLoader() {
-  weatherBlock.style.display = weatherBlock.style.display === 'none' ? 'flex' : 'none';
-  loader.style.display = loader.style.display === 'block' ? 'none' : 'block';
+  weatherBlock.classList.add('hide');
+  loader.classList.add('show');
+}
+
+function hideLoader() {
+  weatherBlock.classList.remove('hide');
+  loader.classList.remove('show');
 }
 
 const location = new Location();

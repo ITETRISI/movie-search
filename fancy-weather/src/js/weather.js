@@ -28,7 +28,7 @@ class Weather {
 
   createWeatherToday(icon, temp) {
     document.querySelector('.today_icon').src = `./src/image/${icon}.svg`;
-    document.querySelector('.today_temperature').innerText = `${Math.round(temp)}°C`;
+    document.querySelector('.today_temperature').textContent = `${Math.round(temp)}°C`;
   }
 
   createWeatherInfo(description, sensation, windSpeed, humidity) {

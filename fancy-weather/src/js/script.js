@@ -1,6 +1,6 @@
 import location from './search-location';
 import getImage from './image';
-import Temperature from './temperature';
+import temperature from './temperature';
 import inputByMicrophone from './microphone';
 import './map';
 
@@ -12,7 +12,7 @@ function search() {
   location.searchLocation(place.value, language);
 }
 
-document.querySelector('#select').value = sessionStorage.getItem('language') ? sessionStorage.getItem('language') : 'en';
+document.querySelector('#select').value = sessionStorage.getItem('language') || 'en';
 
 document.querySelector('#select').onchange = () => {
   const language = document.querySelector('#select').value;
@@ -30,6 +30,10 @@ document.querySelector('.image').addEventListener('click', () => {
   getImage(sessionStorage.getItem('weather'));
 });
 
-document.querySelector('.temperature').addEventListener('click', () => { Temperature.transformTemperature(); });
+document.querySelector('.temperature').addEventListener('click', () => {
+  temperature.transformTemperature();
+});
 
-document.querySelector('.microphone').addEventListener('click', () => { inputByMicrophone(sessionStorage.getItem('language')); });
+document.querySelector('.microphone').addEventListener('click', () => {
+  inputByMicrophone(sessionStorage.getItem('language'));
+});

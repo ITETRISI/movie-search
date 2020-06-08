@@ -42,7 +42,7 @@ class Map {
           const place = data.features[0].place_name;
           location.searchLocation(place, sessionStorage.getItem('language'));
         } catch (error) {
-          errorBlock.innerText = 'Please, try to click in another place';
+          errorBlock.textContent = 'Please, try to click in another place';
         }
       });
     });
@@ -51,12 +51,12 @@ class Map {
   newMapPosition(lng, lat, language) {
     mapBox.flyTo({
       center: [lng, lat],
-		});
+    });
     mapMarker.setLngLat([lng, lat]).addTo(mapBox);
-		document.querySelector('.coordinates').innerHTML = `${translate(language, 'longitude')}:
+    document.querySelector('.coordinates').innerHTML = `${translate(language, 'longitude')}:
 		${doubleToDegree(lng)}, ${translate(language, 'latitude')}: 
 		${doubleToDegree(lat)}`;
-		document.querySelector('.map-info').innerText = `${translate(language, 'info')}`;
+    document.querySelector('.map-info').textContent = `${translate(language, 'info')}`;
   }
 }
 

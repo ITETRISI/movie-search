@@ -1,7 +1,7 @@
 import translate from './translate';
 import {
-	errorBlock,
-	timeZone
+  errorBlock,
+  timeZone,
 } from './data';
 
 class TimeService {
@@ -19,22 +19,20 @@ class TimeService {
     if (this.place !== newPlace && newPlace) {
       clearInterval(this.currentInterval);
       this.place = newPlace;
-      if (newPlace) {
-        this.currentInterval = setInterval(() => {
-          this.generateRequest(newPlace);
-        }, 1200);
-      }
+      this.currentInterval = setInterval(() => {
+        this.generateRequest(newPlace);
+      }, 1200);
     }
   }
 
   async generateRequest(place) {
     try {
-			const url = `${timeZone}&${place}`;
+      const url = `${timeZone}&${place}`;
       const response = await fetch(url);
       const data = await response.json();
       this.parseData(data);
     } catch (error) {
-      errorBlock.innerText = 'Too many requests at the same time';
+      errorBlock.textContent = 'Too many requests at the same time';
     }
   }
 

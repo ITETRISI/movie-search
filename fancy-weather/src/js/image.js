@@ -1,16 +1,23 @@
 import {
   errorBlock,
+  unsplash,
 } from './data';
 
 export default async function getImage(month, hour, icon) {
-  if (hour < 19 && hour > 9) {
-    hour = 'day';
+  const day = 19;
+  const night = 9;
+  const dayTime = {
+    day: 'day',
+    night: 'night',
+  };
+  if (hour < day && hour > night) {
+    hour = dayTime.day;
   } else {
-    hour = 'night';
+    hour = dayTime.night;
   }
   try {
     sessionStorage.setItem('weather', `${month},${hour},${icon}`);
-    const url = `https://api.unsplash.com/photos/random?orientation=landscape&per_page=1&query=${month},${hour},${icon},landscape&client_id=ab0868d66e52831fa660f145b8ba78d100ff841127ab78a118ad08f3fcf0e98e`;
+    const url = `${unsplash}photos/random?orientation=landscape&per_page=1&query=${month},${hour},${icon},landscape&client_id=ab0868d66e52831fa660f145b8ba78d100ff841127ab78a118ad08f3fcf0e98e`;
     const response = await fetch(url);
     const data = await response.json();
     const backgroundImage = document.querySelector('.background-image');
@@ -23,6 +30,6 @@ export default async function getImage(month, hour, icon) {
       preloaderImg = null;
     });
   } catch (error) {
-    errorBlock.innerText = 'Image limit reached';
+    errorBlock.textContent = 'Image limit reached';
   }
 }

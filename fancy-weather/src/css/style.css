@@ -61,7 +61,7 @@ body{
 }
 
 .loader {
-	display: block;
+	display: none;
   border: 10px solid #496888;
   border-radius: 50%;
   border-top: 10px solid #fb5352;
@@ -76,6 +76,10 @@ body{
   100% { transform: rotate(360deg); }
 }
 
+.loader.show{
+	display: block;
+}
+
 .weather {
 	display: flex;
 	float: left;
@@ -83,6 +87,10 @@ body{
 	align-items: center;
 	width: 500px;
 	height: 500px;
+}
+
+.weather.hide{
+	display: none;
 }
 
 .weather-today {
