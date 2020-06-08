@@ -1,5 +1,7 @@
 import location from './search-location';
-import { microphone } from './data';
+import {
+  microphone
+} from './data';
 
 function inputByMicrophone(language) {
   if (!language) {

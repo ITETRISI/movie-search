@@ -36,7 +36,10 @@ class Map {
 
       mapBox.on('click', async (e) => {
         try {
-          const { lat, lng } = e.lngLat;
+          const {
+            lat,
+            lng
+          } = e.lngLat;
           const response = await fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${lng},${lat}.json?types=country&access_token=${mapBoxToken}`);
           const data = await response.json();
           const place = data.features[0].place_name;
